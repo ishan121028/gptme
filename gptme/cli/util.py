@@ -27,6 +27,7 @@ warnings.filterwarnings(
     message=r".*urllib3.*chardet.*charset_normalizer.*",
 )
 
+import difflib
 import fnmatch
 import glob
 import importlib
@@ -1320,6 +1321,22 @@ def tools_list(available: bool, langtags: bool, compact: bool, as_json: bool):
     )
 
 
+def _suggest_tool_names(tool_name: str, candidates: list[str]) -> list[str]:
+    """Return up to three available tool names that look like ``tool_name``.
+
+    Used by the not-found paths of ``tools info``/``tools call`` so a typo like
+    ``ipyhton`` points straight at ``ipython`` instead of making the user scan
+    the full tool list.
+    """
+    return difflib.get_close_matches(tool_name, candidates, n=3, cutoff=0.6)
+
+
+def _print_did_you_mean(suggestions: list[str]) -> None:
+    if suggestions:
+        quoted = ", ".join(f"'{s}'" for s in suggestions)
+        print(f"Did you mean: {quoted}?")
+
+
 @tools.command("info")
 @click.argument("tool_name")
 @click.option("-v", "--verbose", is_flag=True, help="Show full output (not truncated)")
@@ -1357,6 +1374,7 @@ def tools_info(
             available_names = sorted(
                 name for name, t in available_dict.items() if t.is_available
             )
+            suggestions = _suggest_tool_names(tool_name, available_names)
             if as_json:
                 click.echo(
                     json.dumps(
@@ -1364,6 +1382,7 @@ def tools_info(
                             "tool": tool_name,
                             "error": f"Tool '{tool_name}' not found",
                             "available_tools": available_names,
+                            "suggestions": suggestions,
                         },
                         indent=2,
                     )
@@ -1372,6 +1391,7 @@ def tools_info(
                 print(f"Tool '{tool_name}' not found. Available tools:")
                 for name in available_names:
                     print(f"  - {name}")
+                _print_did_you_mean(suggestions)
             sys.exit(1)
 
     if as_json:
@@ -1428,11 +1448,11 @@ def tools_call(tool_name: str, function_name: str, arg: list[str]):
 
     tool = get_tool(tool_name)
     if not tool:
+        callable_names = sorted(t.name for t in get_available_tools() if t.is_available)
         print(f"Tool '{tool_name}' not found. Available tools:")
-        for t in sorted(
-            (t for t in get_available_tools() if t.is_available), key=lambda t: t.name
-        ):
-            print(f"- {t.name}")
+        for name in callable_names:
+            print(f"- {name}")
+        _print_did_you_mean(_suggest_tool_names(tool_name, callable_names))
         sys.exit(1)
 
     function = (

@@ -869,6 +869,39 @@ def test_missing_tool_suggestions_exclude_unavailable(
         assert listed == ["available-tool"]
 
 
+@pytest.mark.parametrize(
+    "args",
+    [
+        ["tools", "info", "availble-tool"],
+        ["tools", "info", "availble-tool", "--json"],
+        ["tools", "call", "availble-tool", "fn"],
+    ],
+    ids=["info-text", "info-json", "call-text"],
+)
+def test_missing_tool_did_you_mean(
+    monkeypatch: pytest.MonkeyPatch, args: list[str]
+) -> None:
+    """A near-miss tool name suggests the closest available tool."""
+    discovered = [
+        SimpleNamespace(name="available-tool", is_available=True),
+        SimpleNamespace(name="availble-unavailable", is_available=False),
+        SimpleNamespace(name="shell", is_available=True),
+    ]
+    monkeypatch.setattr("gptme.tools.get_available_tools", lambda: discovered)
+    monkeypatch.setattr("gptme.tools.get_tool", lambda name: None)
+    monkeypatch.setattr("gptme.tools.init_tools", lambda: None)
+
+    result = CliRunner().invoke(main, args)
+
+    assert result.exit_code == 1
+    if "--json" in args:
+        data = json.loads(result.output)
+        assert data["suggestions"] == ["available-tool"]
+    else:
+        assert "Did you mean: 'available-tool'?" in result.output
+        assert "availble-unavailable" not in result.output
+
+
 def test_tools_call_non_default_tool():
     """Non-default tools that expose functions must be callable.
 
