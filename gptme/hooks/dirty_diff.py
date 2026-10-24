@@ -4,8 +4,9 @@ Narrower successor to the rejected gptme/gptme#4009 (`--diff`/`--diff-ref` CLI
 flags + suggestion-acceptance ledger). Erik's guidance on rejecting it: "This
 would maybe be better done as a hook or plugin or something." This hook does
 exactly that — no new CLI surface, no ledger, no line-range annotation. It
-yields a compact tracked-file summary, a 2k-character patch preview, and
-untracked names as a hidden system message. Lockfiles and generated minified
+yields a compact tracked-file summary, a patch preview (up to 24k characters,
+with standard 3-line hunk context), and untracked names as a hidden system
+message. Lockfiles and generated minified
 assets/source maps remain visible in the summary but not in the patch.
 Explicit inspection commands provide the next level of detail on demand.
 
@@ -43,8 +44,14 @@ logger = logging.getLogger(__name__)
 # unrelated content cannot suppress injection.
 _INJECT_SENTINEL = "<!-- gptme-dirty-diff -->"
 
-# Automatic context is a preview, not a substitute for an explicit inspection.
-_MAX_DIFF_CHARS = 2_000
+# Automatic context is a preview, not a substitute for an explicit inspection,
+# but it should cover a typical work-in-progress change. At 2k characters the
+# preview was usually cut inside the first hunk, so the model re-ran
+# `git diff HEAD` on its first step anyway and the injected block was wasted.
+_MAX_DIFF_CHARS = 24_000
+# Hunk context lines. With a single line of context, edits inside a function
+# lose the surrounding signature and the model cannot tell what was changed.
+_DIFF_CONTEXT_LINES = 3
 _MAX_SUMMARY_CHARS = 1_200
 _MAX_UNTRACKED_CHARS = 1_200
 
@@ -330,7 +337,7 @@ def _get_dirty_diff(workspace: Path) -> tuple[str, bool] | None:
         "--no-textconv",
         "--no-color",
         "--no-renames",
-        "--unified=1",
+        f"--unified={_DIFF_CONTEXT_LINES}",
         "HEAD",
         "--",
         ":/",
