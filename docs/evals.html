@@ -1,0 +1,1002 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Evals &#8212; gptme</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="_static/asciinema-player_3.12.1.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3a28e17f" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/asciinema-player_3.12.1.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'evals';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://gptme.org/docs/evals.html" />
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Finetuning" href="finetuning.html" />
+    <link rel="prev" title="Context Compression" href="context-compression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="auto">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="gptme - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="gptme - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="getting-started.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-dependencies.html">Extras and System Dependencies</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/choose-workflow.html">Choose a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/minimal-context.html">Minimal Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/edit-files.html">Edit Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/code-review.html">Review Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/debug-python.html">Debug Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/refactor.html">Refactor Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/automate-task.html">Automate Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/parallel-research.html">Parallel Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/computer-use.html">Computer Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/skills-workflows.html">Reusable Skills</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/custom-tool-plugin.html">Custom Tool Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/tts-setup.html">Text-to-Speech</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using gptme</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="providers.html">Providers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="providers-supported.html">Supported Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers-custom.html">Custom and Local Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers-integration.html">Provider Integration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool-formats.html">Tool Formats</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/read.html">Read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/save.html">Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/patch.html">Patch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/morph.html">Morph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/hashline-edit.html">Hashline Edit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/patch-many.html">Patch many</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/convert.html">Convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/gh.html">GitHub (gh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/precommit.html">Precommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/autocommit.html">Autocommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/browser.html">Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/rag.html">RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/chats.html">Chats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/vision.html">Vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/screenshot.html">Screenshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/computer.html">Computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/choice.html">Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/elicit.html">Elicit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/form.html">Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tmux.html">Tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/subagent.html">Subagent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/complete.html">Complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/restart.html">Restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/vent.html">Vent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/request-tool-change.html">Request Tool Change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/watch.html">Watch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/progress.html">Progress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/clarify.html">Clarify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/lessons.html">Lessons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/todo.html">Todo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/mcp.html">MCP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automation.html">Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cli.html">CLI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme.html">gptme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-server.html">gptme-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-tui.html">gptme-tui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-util.html">gptme-util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/agents.html">Agent Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-mcp-server.html">gptme-mcp-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/setup.html">Setup and Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/sessions.html">Sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/evaluation.html">Evaluation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="tui.html">TUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app.html">App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acp.html">ACP</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="channels.html">Channels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bot.html">GitHub Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/email.html">Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/agent-messaging.html">Agent Messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/chat.html">Chat Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/voice.html">Voice</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents &amp; Context</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="agents.html">Agents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="agents/workspace.html">Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents/autonomous.html">Running autonomously</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="lessons.html">Lessons</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="skills.html">Skills</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="skills-gallery.html">Gallery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Memory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extending gptme</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugin System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_tool.html">Custom Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcp.html">MCP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pr-lifecycle.html">PR Lifecycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building Executables</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/llm.html">LLMs and Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/config.html">Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/plugins.html">Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/prompts.html">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/server.html">Server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="context-compression.html">Context Compression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Evals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="design/index.html">Design Documents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="design/hook-based-confirmations.html">Hook-Based Tool Confirmations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/elicitation.html">Generalized Elicitation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/ptc-tool-interface.html">Programmatic Tool Calling (PTC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/transcript-persistence.html">Transcript Persistence</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/acronyms.html">What does “gptme” stand for?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="changelog.html">Changelog</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.35.1.html">v0.35.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.35.0.html">v0.35.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.34.0.html">v0.34.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.33.0.html">v0.33.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.32.1.html">v0.32.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.32.0.html">v0.32.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.31.0.html">v0.31.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.30.0.html">v0.30.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.29.0.html">v0.29.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.3.html">v0.28.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.2.html">v0.28.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.1.html">v0.28.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.0.html">v0.28.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.27.0.html">v0.27.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.26.0.html">v0.26.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.25.0.html">v0.25.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.1.html">v0.24.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.0.html">v0.24.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.23.0.html">v0.23.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.22.0.html">v0.22.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.21.0.html">v0.21.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.20.0.html">v0.20.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.19.0.html">v0.19.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.18.0.html">v0.18.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.17.0.html">v0.17.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.16.0.html">v0.16.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.15.0.html">v0.15.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.14.0.html">v0.14.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.13.0.html">v0.13.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.12.0.html">v0.12.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.11.0.html">v0.11.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.5.html">v0.10.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.4.html">v0.10.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.3.html">v0.10.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.2.html">v0.10.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.1.html">v0.10.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.0.html">v0.10.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.4.html">v0.9.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.3.html">v0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.2.html">v0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.1.html">v0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.0.html">v0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.1.html">v0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.0.html">v0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.7.0.html">v0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.1.html">v0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.0.html">v0.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.5.0.html">v0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.2.html">v0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.1.html">v0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.0.html">v0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.3.html">v0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.2.html">v0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.1.html">v0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.0.html">v0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.2.html">v0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.1.html">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.1.html">v0.1.1</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gptme/gptme">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://discord.gg/NMaCmmkxWv">Discord</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://x.com/gptmeorg">X</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme/edit/master/docs/evals.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/evals.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Evals</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-leaderboard">Model Leaderboard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#policy-governed-sandboxes">Policy-governed sandboxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-eval-suites">Available Eval Suites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-results">Raw Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-evals">Other evals</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="evals">
+<h1>Evals<a class="headerlink" href="#evals" title="Link to this heading">#</a></h1>
+<p>gptme provides LLMs with a wide variety of tools, but how well do models make use of them? Which tasks can they complete, and which ones do they struggle with? How far can they get on their own, without any human intervention?</p>
+<p>To answer these questions, we have created an evaluation suite that tests the capabilities of LLMs on a wide variety of tasks.</p>
+<p>The suite covers fundamental tool use, web browsing, project initialization, and a growing set of <strong>practical programming tasks</strong> that reflect real-world agentic work: building APIs, refactoring code, parsing data formats, writing tests, and more.</p>
+<p>For which model to use based on these results, see <a class="reference internal" href="models.html"><span class="doc">Models</span></a>; for each
+provider’s default model, see <a class="reference internal" href="providers.html#default-models"><span class="std std-ref">Default models</span></a>.</p>
+<section id="model-leaderboard">
+<span id="id1"></span><h2>Model Leaderboard<a class="headerlink" href="#model-leaderboard" title="Link to this heading">#</a></h2>
+<p>The table below shows pass rates across our eval suites for each model (best tool format per model). Models are ranked by overall pass rate, with breakdowns by suite type.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python -m gptme.eval.leaderboard --results-dir eval_results --format rst --min-tests 4
+*No leaderboard data available (No eval results found in eval_results)*
+*No eval results available. Run evals to populate the leaderboard.*
+</pre></div>
+</div>
+<p><strong>Notes:</strong></p>
+<ul class="simple">
+<li><p><em>Format</em> shows the best-performing <code class="docutils literal notranslate"><span class="pre">--tool-format</span></code> for each model (see <a class="reference internal" href="tool-formats.html"><span class="doc">Tool Formats</span></a>).</p></li>
+<li><p><em>Basic</em> tests cover fundamental tool use (file I/O, shell, git, Python).</p></li>
+<li><p><em>Practical</em> tests cover real-world programming tasks (APIs, data processing, refactoring).</p></li>
+<li><p>Models with fewer than 4 tests are excluded.</p></li>
+<li><p>Results use a 300-second timeout per test. Some models may perform better with longer timeouts.</p></li>
+</ul>
+<p>To generate this table locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval<span class="w"> </span>--leaderboard<span class="w"> </span>--leaderboard-format<span class="w"> </span>rst
+gptme-eval<span class="w"> </span>--leaderboard<span class="w"> </span>--leaderboard-format<span class="w"> </span>csv<span class="w">       </span><span class="c1"># for data analysis</span>
+gptme-eval<span class="w"> </span>--leaderboard<span class="w"> </span>--leaderboard-format<span class="w"> </span>markdown<span class="w">   </span><span class="c1"># for GitHub/blog</span>
+gptme-eval<span class="w"> </span>--leaderboard<span class="w"> </span>--leaderboard-format<span class="w"> </span>html<span class="w">       </span><span class="c1"># self-contained HTML page</span>
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>You can run the simple <code class="docutils literal notranslate"><span class="pre">hello</span></code> eval like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval<span class="w"> </span>hello<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-sonnet-4-6
+</pre></div>
+</div>
+<p>However, we recommend running it in Docker to improve isolation and reproducibility:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>build-docker
+docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="s2">"ANTHROPIC_API_KEY=&lt;your api key&gt;"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/eval_results:/app/eval_results<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gptme-eval<span class="w"> </span>hello<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-sonnet-4-6
+</pre></div>
+</div>
+</section>
+<section id="policy-governed-sandboxes">
+<h2>Policy-governed sandboxes<a class="headerlink" href="#policy-governed-sandboxes" title="Link to this heading">#</a></h2>
+<p>Eval tasks run code the model wrote, so the execution environment is the thing
+under test as much as the model is. Docker gives process isolation; it does not
+by itself constrain which files the code can read, which hosts it can reach, or
+which credentials it can exfiltrate.</p>
+<p><a class="reference external" href="https://github.com/NVIDIA/OpenShell">NVIDIA OpenShell</a> is an optional
+alternative runtime for that: agents run under kernel-enforced policy
+(Landlock for filesystem access, seccomp for network), network egress is
+mediated by a supervisor, and credentials are injected only for approved
+endpoints rather than passed into the sandbox as environment variables. The
+existing <code class="docutils literal notranslate"><span class="pre">gptme-eval:latest</span></code> image can be used directly as the sandbox image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>build-docker
+<span class="c1"># providers/anthropic.yaml ships with OpenShell, not gptme. Fetch the</span>
+<span class="c1"># example profile first (see link below) and edit it for your image.</span>
+openshell<span class="w"> </span>provider<span class="w"> </span>profile<span class="w"> </span>import<span class="w"> </span>-f<span class="w"> </span>providers/anthropic.yaml<span class="w"> </span>--global
+openshell<span class="w"> </span>sandbox<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from<span class="w"> </span>gptme-eval:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--provider<span class="w"> </span>anthropic<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--<span class="w"> </span>gptme-eval<span class="w"> </span>hello<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-sonnet-4-6
+</pre></div>
+</div>
+<p>Unlike the Docker example, no API key is passed in through the sandbox
+environment. The Anthropic key is declared once as a provider profile and the
+supervisor injects it, as <code class="docutils literal notranslate"><span class="pre">ANTHROPIC_API_KEY</span></code>, only for the endpoints that
+profile allows (<code class="docutils literal notranslate"><span class="pre">api.anthropic.com</span></code>).</p>
+<p>The profile is not part of this repository: OpenShell keeps a set of reviewable
+example profiles — <a class="reference external" href="https://github.com/NVIDIA/OpenShell/blob/main/providers/anthropic.yaml">providers/anthropic.yaml</a>
+among them — in <a class="reference external" href="https://github.com/NVIDIA/OpenShell/tree/main/providers">its repository</a>. These examples are
+not compiled into the gateway: a gateway serves exactly the profiles an operator
+imported, so a new one starts with an empty catalog. A profile’s <code class="docutils literal notranslate"><span class="pre">binaries</span></code>
+list is the least-privilege control deciding which processes may reach its
+endpoints, and the examples name paths from a reference image layout, so copy
+the profile, point <code class="docutils literal notranslate"><span class="pre">binaries</span></code> at the client or interpreter in
+<code class="docutils literal notranslate"><span class="pre">gptme-eval:latest</span></code>, then import your copy (see the
+<a class="reference external" href="https://docs.nvidia.com/openshell/latest/how-it-works/providers/profiles">provider profiles docs</a>).</p>
+<p>This requires a running OpenShell gateway plus Docker or Podman (see the
+<a class="reference external" href="https://docs.nvidia.com/openshell/latest/about/support-matrix">OpenShell support matrix</a>).
+It is not the default eval path today.</p>
+</section>
+<section id="available-eval-suites">
+<h2>Available Eval Suites<a class="headerlink" href="#available-eval-suites" title="Link to this heading">#</a></h2>
+<p>The evaluation suite is organized into named suites that can be run individually or together:</p>
+<dl>
+<dt><strong>basic</strong></dt><dd><p>Fundamental tool use: reading and writing files, patching code, running Python in IPython,
+executing shell commands, using git, counting words, transforming JSON, multi-file refactoring,
+writing tests, generating CLI programs, and fixing bugs. (~18 tests)</p>
+</dd>
+<dt><strong>browser</strong></dt><dd><p>Web browsing and data extraction using the browser tool.</p>
+</dd>
+<dt><strong>init_projects</strong></dt><dd><p>Project initialization: <code class="docutils literal notranslate"><span class="pre">init-git</span></code>, <code class="docutils literal notranslate"><span class="pre">init-react</span></code>, <code class="docutils literal notranslate"><span class="pre">init-rust</span></code>. Tests the ability
+to scaffold new projects from scratch.</p>
+</dd>
+<dt><strong>practical</strong> — <strong>practical2</strong> — … — <strong>practical33</strong></dt><dd><p>A growing series of real-world programming tasks that go beyond basic file I/O.
+The practical suites now cover 99 tasks across data processing, refactoring,
+algorithms, async/concurrency, SQL, validation, graph search, dynamic
+programming, tree data structures, and classic interview problems.</p>
+<p>Early suites give a good feel for the format:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Suite</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Tests</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>practical</p></td>
+<td><p>Web APIs, log parsing, error handling</p></td>
+<td><p>build-api, parse-log,
+add-error-handling</p></td>
+</tr>
+<tr class="row-odd"><td><p>practical2</p></td>
+<td><p>Data filtering, templating, CSV
+validation</p></td>
+<td><p>sort-and-filter, template-fill,
+validate-csv</p></td>
+</tr>
+<tr class="row-even"><td><p>practical3</p></td>
+<td><p>Unit test writing, SQLite
+persistence</p></td>
+<td><p>write-tests-calculator,
+sqlite-store</p></td>
+</tr>
+<tr class="row-odd"><td><p>practical4</p></td>
+<td><p>Data aggregation, schedule overlap
+detection, topological sort</p></td>
+<td><p>group-by, schedule-overlaps,
+topo-sort</p></td>
+</tr>
+<tr class="row-even"><td><p>practical5</p></td>
+<td><p>Code refactoring, data pipelines,
+regex scrubbing</p></td>
+<td><p>rename-function, data-pipeline,
+regex-scrub</p></td>
+</tr>
+<tr class="row-odd"><td><p>practical6</p></td>
+<td><p>CSV analysis, word frequency
+counting, config merging</p></td>
+<td><p>csv-analysis, word-frequency,
+merge-configs</p></td>
+</tr>
+<tr class="row-even"><td><p>practical7</p></td>
+<td><p>INI-to-JSON conversion, JSON diff,
+changelog generation</p></td>
+<td><p>ini-to-json, json-diff,
+changelog-gen</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Later suites extend coverage with semver sorting, Roman numerals, matrix and
+bracket tasks, async pipelines and worker queues, SQL analytics, tries,
+LRU caches, interval merging, min-stack, knight moves, histogram area,
+edit distance, BST operations, coin change, Dijkstra, spiral matrix,
+number of islands, Kadane’s algorithm, 0/1 knapsack, flood fill,
+trapping rain water, word break, permutations, longest common subsequence,
+stock trading with cooldown, image rotation, N-Queens, longest increasing
+subsequence, cycle detection, sliding window maximum, decode ways,
+meeting rooms, longest palindromic substring, jump game, task scheduler,
+house robber, max product subarray, finding all anagrams, minimum path sum,
+gas station, next permutation, word break II, unique paths, rotate array,
+decode string, top-k frequent elements, partition equal subset sum,
+3sum, majority element (Boyer-Moore voting), counting bits, combination sum,
+generate parentheses, single number (XOR), product except self,
+find duplicate (Floyd’s cycle detection), and missing number.</p>
+<p>For the current authoritative suite list, run <code class="docutils literal notranslate"><span class="pre">gptme-eval</span> <span class="pre">--list</span></code>.</p>
+</dd>
+</dl>
+<p>Run specific tests or suites by name:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval<span class="w"> </span>build-api<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-sonnet-4-6
+gptme-eval<span class="w"> </span>sort-and-filter<span class="w"> </span>rename-function<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-sonnet-4-6
+</pre></div>
+</div>
+<p>Run all practical suites at once (useful for benchmarking):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval<span class="w"> </span>all-practical<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-sonnet-4-6
+
+<span class="c1"># Or run every suite (basic + browser + init_projects + practical):</span>
+gptme-eval<span class="w"> </span>all<span class="w"> </span>--model<span class="w"> </span>anthropic/claude-sonnet-4-6
+</pre></div>
+</div>
+</section>
+<section id="raw-results">
+<h2>Raw Results<a class="headerlink" href="#raw-results" title="Link to this heading">#</a></h2>
+<p>Full per-test results from all eval runs are stored as CSV files in <code class="docutils literal notranslate"><span class="pre">eval_results/</span></code> subdirectories.
+Results are published to the <code class="docutils literal notranslate"><span class="pre">eval-results</span></code> branch of the repository.</p>
+<p>To view raw results locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View latest results</span>
+cat<span class="w"> </span>eval_results/*/eval_results.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-50
+
+<span class="c1"># Export leaderboard as CSV for analysis</span>
+gptme-eval<span class="w"> </span>--leaderboard<span class="w"> </span>--leaderboard-format<span class="w"> </span>csv
+
+<span class="c1"># Export as JSON for programmatic use</span>
+gptme-eval<span class="w"> </span>--leaderboard<span class="w"> </span>--leaderboard-format<span class="w"> </span>json
+</pre></div>
+</div>
+</section>
+<section id="other-evals">
+<h2>Other evals<a class="headerlink" href="#other-evals" title="Link to this heading">#</a></h2>
+<p>SWE-Bench support is now available via <code class="docutils literal notranslate"><span class="pre">gptme-eval-swebench</span></code>.
+It can:</p>
+<ul class="simple">
+<li><p>inspect datasets and instances with <code class="docutils literal notranslate"><span class="pre">--info</span></code></p></li>
+<li><p>generate <code class="docutils literal notranslate"><span class="pre">predictions.jsonl</span></code> in the official SWE-Bench format</p></li>
+<li><p>resume interrupted runs with <code class="docutils literal notranslate"><span class="pre">--resume</span></code></p></li>
+<li><p>optionally invoke the official harness with <code class="docutils literal notranslate"><span class="pre">--run-harness</span></code></p></li>
+</ul>
+<p>Example single-instance smoke test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval-swebench<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-m<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-i<span class="w"> </span>django__django-11099
+</pre></div>
+</div>
+<p>Example full SWE-Bench Lite run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gptme-eval-swebench<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-m<span class="w"> </span>anthropic/claude-sonnet-4-6<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resume<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--run-harness<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset<span class="w"> </span>princeton-nlp/SWE-bench_Lite<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--run-id<span class="w"> </span>gptme_baseline_2026
+</pre></div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The built-in summary printed by <code class="docutils literal notranslate"><span class="pre">gptme-eval-swebench</span></code> is a lightweight file-coverage heuristic.
+For authoritative pass/fail results and leaderboard submission, use the official SWE-Bench harness.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--run-harness</span></code> requires Docker plus <code class="docutils literal notranslate"><span class="pre">swebench[evaluation]</span></code> dependencies.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">gptme-eval-swebench</span> <span class="pre">--info</span></code> to inspect dataset size and specific instance IDs before launching an expensive run.</p></li>
+</ul>
+<p>See also:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/gptme/gptme/pull/1994">PR #1994</a> — SWE-Bench harness integration</p></li>
+<li><p><a class="reference external" href="https://github.com/gptme/gptme/pull/2045">PR #2045</a> — resume support for interrupted runs</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="context-compression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Context Compression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="finetuning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Finetuning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-leaderboard">Model Leaderboard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#policy-governed-sandboxes">Policy-governed sandboxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-eval-suites">Available Eval Suites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-results">Raw Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-evals">Other evals</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Erik Bjäreholt
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Erik Bjäreholt.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

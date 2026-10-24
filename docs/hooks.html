@@ -1,0 +1,1368 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hooks &#8212; gptme</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="_static/asciinema-player_3.12.1.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3a28e17f" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/asciinema-player_3.12.1.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hooks';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://gptme.org/docs/hooks.html" />
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MCP" href="mcp.html" />
+    <link rel="prev" title="Custom Tools" href="custom_tool.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="auto">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="gptme - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="gptme - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="getting-started.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-dependencies.html">Extras and System Dependencies</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/choose-workflow.html">Choose a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/minimal-context.html">Minimal Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/edit-files.html">Edit Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/code-review.html">Review Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/debug-python.html">Debug Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/refactor.html">Refactor Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/automate-task.html">Automate Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/parallel-research.html">Parallel Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/computer-use.html">Computer Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/skills-workflows.html">Reusable Skills</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/custom-tool-plugin.html">Custom Tool Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/tts-setup.html">Text-to-Speech</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using gptme</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="providers.html">Providers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="providers-supported.html">Supported Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers-custom.html">Custom and Local Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers-integration.html">Provider Integration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool-formats.html">Tool Formats</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/read.html">Read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/save.html">Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/patch.html">Patch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/morph.html">Morph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/hashline-edit.html">Hashline Edit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/patch-many.html">Patch many</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/convert.html">Convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/gh.html">GitHub (gh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/precommit.html">Precommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/autocommit.html">Autocommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/browser.html">Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/rag.html">RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/chats.html">Chats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/vision.html">Vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/screenshot.html">Screenshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/computer.html">Computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/choice.html">Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/elicit.html">Elicit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/form.html">Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tmux.html">Tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/subagent.html">Subagent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/complete.html">Complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/restart.html">Restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/vent.html">Vent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/request-tool-change.html">Request Tool Change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/watch.html">Watch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/progress.html">Progress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/clarify.html">Clarify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/lessons.html">Lessons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/todo.html">Todo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/mcp.html">MCP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automation.html">Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cli.html">CLI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme.html">gptme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-server.html">gptme-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-tui.html">gptme-tui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-util.html">gptme-util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/agents.html">Agent Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-mcp-server.html">gptme-mcp-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/setup.html">Setup and Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/sessions.html">Sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/evaluation.html">Evaluation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="tui.html">TUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app.html">App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acp.html">ACP</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="channels.html">Channels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bot.html">GitHub Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/email.html">Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/agent-messaging.html">Agent Messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/chat.html">Chat Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/voice.html">Voice</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents &amp; Context</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="agents.html">Agents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="agents/workspace.html">Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents/autonomous.html">Running autonomously</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="lessons.html">Lessons</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="skills.html">Skills</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="skills-gallery.html">Gallery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Memory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extending gptme</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugin System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_tool.html">Custom Tools</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcp.html">MCP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pr-lifecycle.html">PR Lifecycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building Executables</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/llm.html">LLMs and Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/config.html">Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/plugins.html">Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/prompts.html">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/server.html">Server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="context-compression.html">Context Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evals.html">Evals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="design/index.html">Design Documents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="design/hook-based-confirmations.html">Hook-Based Tool Confirmations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/elicitation.html">Generalized Elicitation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/ptc-tool-interface.html">Programmatic Tool Calling (PTC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/transcript-persistence.html">Transcript Persistence</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/acronyms.html">What does “gptme” stand for?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="changelog.html">Changelog</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.35.1.html">v0.35.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.35.0.html">v0.35.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.34.0.html">v0.34.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.33.0.html">v0.33.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.32.1.html">v0.32.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.32.0.html">v0.32.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.31.0.html">v0.31.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.30.0.html">v0.30.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.29.0.html">v0.29.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.3.html">v0.28.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.2.html">v0.28.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.1.html">v0.28.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.0.html">v0.28.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.27.0.html">v0.27.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.26.0.html">v0.26.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.25.0.html">v0.25.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.1.html">v0.24.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.0.html">v0.24.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.23.0.html">v0.23.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.22.0.html">v0.22.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.21.0.html">v0.21.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.20.0.html">v0.20.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.19.0.html">v0.19.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.18.0.html">v0.18.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.17.0.html">v0.17.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.16.0.html">v0.16.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.15.0.html">v0.15.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.14.0.html">v0.14.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.13.0.html">v0.13.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.12.0.html">v0.12.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.11.0.html">v0.11.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.5.html">v0.10.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.4.html">v0.10.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.3.html">v0.10.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.2.html">v0.10.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.1.html">v0.10.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.0.html">v0.10.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.4.html">v0.9.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.3.html">v0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.2.html">v0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.1.html">v0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.0.html">v0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.1.html">v0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.0.html">v0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.7.0.html">v0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.1.html">v0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.0.html">v0.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.5.0.html">v0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.2.html">v0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.1.html">v0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.0.html">v0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.3.html">v0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.2.html">v0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.1.html">v0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.0.html">v0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.2.html">v0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.1.html">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.1.html">v0.1.1</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gptme/gptme">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://discord.gg/NMaCmmkxWv">Discord</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://x.com/gptmeorg">X</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme/edit/master/docs/hooks.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/hooks.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hooks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hook-types">Hook Types</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turn-and-step-lifecycle-hooks">Turn And Step Lifecycle Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-lifecycle-hooks">Tool Lifecycle Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-operation-hooks">File Operation Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-lifecycle-hooks">Session Lifecycle Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-hooks">Generation Hooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-hooks-from-tools">Registering Hooks from Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-hooks-programmatically">Registering Hooks Programmatically</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hook-function-signatures">Hook Function Signatures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confirmation-hooks-and-deny-decisions">Confirmation Hooks and Deny Decisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-credential-output-policy">Built-in Credential-Output Policy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-hooks">Managing Hooks</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-hooks">Query Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-disable-hooks">Enable/Disable Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unregister-hooks">Unregister Hooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit-hook">Pre-commit Hook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-context-hook">Memory/Context Hook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-hook">Linting Hook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-hooks">Built-in Hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-safety">Thread Safety</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migration-guide">Migration Guide</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-existing-features-to-hooks">Converting Existing Features to Hooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-converting-pre-commit-checks-to-a-hook">Example: Converting pre-commit checks to a hook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gptme.hooks">API Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.hooks.init_hooks"><code class="docutils literal notranslate"><span class="pre">init_hooks()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See Also</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="hooks">
+<h1>Hooks<a class="headerlink" href="#hooks" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a new feature added in response to <a class="reference external" href="https://github.com/gptme/gptme/issues/156">issue #156</a>.</p>
+</div>
+<p>The hook system allows tools and plugins to register callbacks that execute at various points in gptme’s lifecycle. This enables powerful extensions like automatic linting, memory management, pre-commit checks, and more.</p>
+<section id="hook-types">
+<h2>Hook Types<a class="headerlink" href="#hook-types" title="Link to this heading">#</a></h2>
+<p>The following hook types are available:</p>
+<section id="turn-and-step-lifecycle-hooks">
+<h3>Turn And Step Lifecycle Hooks<a class="headerlink" href="#turn-and-step-lifecycle-hooks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TURN_PRE</span></code>: Once per submitted user prompt, before the turn starts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STEP_PRE</span></code>: Before each generation/tool-execution step within a turn</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STEP_POST</span></code>: After each step completes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TURN_POST</span></code>: After the whole turn completes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MESSAGE_TRANSFORM</span></code>: Rewrite assistant message content before persistence/display</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">TURN_PRE</span></code> is the clean “user prompt submitted” surface. <code class="docutils literal notranslate"><span class="pre">STEP_PRE</span></code> may run
+multiple times inside one turn if the assistant keeps calling tools.</p>
+</section>
+<section id="tool-lifecycle-hooks">
+<h3>Tool Lifecycle Hooks<a class="headerlink" href="#tool-lifecycle-hooks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TOOL_EXECUTE_PRE</span></code>: Before executing any tool</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOOL_EXECUTE_POST</span></code>: After executing any tool</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOOL_TRANSFORM</span></code>: Transform tool execution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOOL_CONFIRM</span></code>: Blocking confirmation/deny decision before execution
+(see <a class="reference internal" href="#confirmation-hooks-and-deny-decisions"><span class="std std-ref">Confirmation Hooks and Deny Decisions</span></a>)</p></li>
+</ul>
+</section>
+<section id="file-operation-hooks">
+<h3>File Operation Hooks<a class="headerlink" href="#file-operation-hooks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE_SAVE_PRE</span></code>: Before saving a file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE_SAVE_POST</span></code>: After saving a file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE_PATCH_PRE</span></code>: Before patching a file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE_PATCH_POST</span></code>: After patching a file</p></li>
+</ul>
+</section>
+<section id="session-lifecycle-hooks">
+<h3>Session Lifecycle Hooks<a class="headerlink" href="#session-lifecycle-hooks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SESSION_START</span></code>: At session start</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SESSION_END</span></code>: At session end</p></li>
+</ul>
+<p>Global and project configuration can attach bounded shell commands to these two
+lifecycle events through <code class="docutils literal notranslate"><span class="pre">[[hooks.scripts]]</span></code>. The lists are additive and run
+in descending <code class="docutils literal notranslate"><span class="pre">priority</span></code> order; global hooks win equal-priority ties, then
+declaration order is preserved. See <a class="reference internal" href="config.html#global-config"><span class="std std-ref">Global config</span></a> and
+<a class="reference internal" href="config.html#project-config"><span class="std std-ref">Project config</span></a>. Other hook types carry structured inputs or control-flow
+semantics and are not exposed through the shell adapter.</p>
+</section>
+<section id="generation-hooks">
+<h3>Generation Hooks<a class="headerlink" href="#generation-hooks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GENERATION_PRE</span></code>: Before generating response</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GENERATION_POST</span></code>: After generating response</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GENERATION_INTERRUPT</span></code>: Interrupt generation</p></li>
+</ul>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<section id="registering-hooks-from-tools">
+<h3>Registering Hooks from Tools<a class="headerlink" href="#registering-hooks-from-tools" title="Link to this heading">#</a></h3>
+<p>Tools can register hooks in their <code class="docutils literal notranslate"><span class="pre">ToolSpec</span></code> definition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gptme.tools.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">HookType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gptme.message</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_file_save</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">created</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Hook function called after a file is saved."""</span>
+    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">".py"</span><span class="p">:</span>
+        <span class="c1"># Run linting on Python files</span>
+        <span class="k">return</span> <span class="n">Message</span><span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Linted </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">tool</span> <span class="o">=</span> <span class="n">ToolSpec</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"linter"</span><span class="p">,</span>
+    <span class="n">desc</span><span class="o">=</span><span class="s2">"Automatic linting tool"</span><span class="p">,</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="p">{</span>
+         <span class="s2">"file_save"</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">HookType</span><span class="o">.</span><span class="n">FILE_SAVE_POST</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>  <span class="c1"># Hook type</span>
+            <span class="n">on_file_save</span><span class="p">,</span>                    <span class="c1"># Hook function</span>
+            <span class="mi">10</span>                               <span class="c1"># Priority (higher = runs first)</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="registering-hooks-programmatically">
+<h3>Registering Hooks Programmatically<a class="headerlink" href="#registering-hooks-programmatically" title="Link to this heading">#</a></h3>
+<p>You can also register hooks directly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_hook</span><span class="p">,</span> <span class="n">HookType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks.confirm</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfirmationResult</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_hook_function</span><span class="p">(</span><span class="n">manager</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Custom hook function."""</span>
+    <span class="c1"># Do something</span>
+    <span class="k">return</span> <span class="n">Message</span><span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="s2">"Hook executed!"</span><span class="p">)</span>
+
+<span class="n">register_hook</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"my_custom_hook"</span><span class="p">,</span>
+    <span class="n">hook_type</span><span class="o">=</span><span class="n">HookType</span><span class="o">.</span><span class="n">TURN_PRE</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><span class="n">my_hook_function</span><span class="p">,</span>
+    <span class="n">priority</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="hook-function-signatures">
+<h3>Hook Function Signatures<a class="headerlink" href="#hook-function-signatures" title="Link to this heading">#</a></h3>
+<p>Hook functions receive different arguments depending on the hook type:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Turn/step hooks</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">turn_hook</span><span class="p">(</span><span class="n">manager</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Tool hooks</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tool_hook</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="n">workspace</span><span class="p">,</span> <span class="n">tool_use</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># File hooks</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">file_hook</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="n">workspace</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">created</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Session hooks</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">session_hook</span><span class="p">(</span><span class="n">logdir</span><span class="p">,</span> <span class="n">workspace</span><span class="p">,</span> <span class="n">initial_msgs</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Confirmation hooks (see "Confirmation Hooks and Deny Decisions" below)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">confirm_hook</span><span class="p">(</span><span class="n">tool_use</span><span class="p">,</span> <span class="n">preview</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">workspace</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">is_dangerous</span><span class="p">(</span><span class="n">tool_use</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ConfirmationResult</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">"Blocked: destructive path"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># fall through to the next confirmation hook</span>
+</pre></div>
+</div>
+<p>Most hook functions can:</p>
+<ul class="simple">
+<li><p>Return <code class="docutils literal notranslate"><span class="pre">None</span></code> (no action)</p></li>
+<li><p>Return a single <code class="docutils literal notranslate"><span class="pre">Message</span></code> object</p></li>
+<li><p>Return a generator that yields <code class="docutils literal notranslate"><span class="pre">Message</span></code> objects</p></li>
+<li><p>Raise exceptions (which are caught and logged)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">TOOL_CONFIRM</span></code> hooks are the exception: they <em>return</em> a
+<code class="docutils literal notranslate"><span class="pre">ConfirmationResult</span></code> rather than yielding messages. See below.</p>
+</section>
+<section id="confirmation-hooks-and-deny-decisions">
+<span id="id1"></span><h3>Confirmation Hooks and Deny Decisions<a class="headerlink" href="#confirmation-hooks-and-deny-decisions" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">TOOL_CONFIRM</span></code> is the hook for deterministic, below-the-model guardrails: it
+runs before a tool executes and can <strong>deny</strong> execution outright.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">HookType</span><span class="p">,</span> <span class="n">register_hook</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks.confirm</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfirmationResult</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">block_secret_reads</span><span class="p">(</span><span class="n">tool_use</span><span class="p">,</span> <span class="n">preview</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">workspace</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Deny any shell command that reads private keys."""</span>
+    <span class="k">if</span> <span class="n">tool_use</span><span class="o">.</span><span class="n">tool</span> <span class="o">==</span> <span class="s2">"shell"</span> <span class="ow">and</span> <span class="s2">"id_rsa"</span> <span class="ow">in</span> <span class="p">(</span><span class="n">tool_use</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ConfirmationResult</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">"Blocked: secret file access"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># not our decision — fall through</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">():</span>
+    <span class="n">register_hook</span><span class="p">(</span>
+        <span class="s2">"guardrail.secrets"</span><span class="p">,</span>
+        <span class="n">HookType</span><span class="o">.</span><span class="n">TOOL_CONFIRM</span><span class="p">,</span>
+        <span class="n">block_secret_reads</span><span class="p">,</span>
+        <span class="n">priority</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>  <span class="c1"># must exceed every built-in confirmation hook</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>The three results a confirmation hook can return:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ConfirmationResult.skip(message)</span></code> — <strong>deny</strong>; the tool does not execute, and <code class="docutils literal notranslate"><span class="pre">message</span></code> is surfaced as the reason.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConfirmationResult.confirm()</span></code> — approve without prompting the user.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConfirmationResult.edit(content)</span></code> — execute with modified content.</p></li>
+</ul>
+<p>Returning <code class="docutils literal notranslate"><span class="pre">None</span></code> falls through to the next <code class="docutils literal notranslate"><span class="pre">TOOL_CONFIRM</span></code> hook in priority
+order; the first non-<code class="docutils literal notranslate"><span class="pre">None</span></code> result wins. If no hook is registered at all,
+execution is auto-confirmed (autonomous mode).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A guardrail must out-rank <strong>every</strong> built-in confirmation hook, or it can be
+pre-empted before it ever runs. The built-ins register at:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">server_confirm</span></code> — priority <strong>100</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cli_confirm</span></code> — priority <strong>0</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto_confirm</span></code> — priority <strong>0</strong></p></li>
+</ul>
+<p>Hooks sort by <code class="docutils literal notranslate"><span class="pre">(priority,</span> <span class="pre">name)</span></code> <strong>descending</strong>, so equal priority is broken
+by name in <em>reverse</em> alphabetical order — not by registration order. A
+guardrail named <code class="docutils literal notranslate"><span class="pre">guardrail.secrets</span></code> registered at priority <code class="docutils literal notranslate"><span class="pre">100</span></code> therefore
+loses to <code class="docutils literal notranslate"><span class="pre">server_confirm</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;s&quot;</span> <span class="pre">&gt;</span> <span class="pre">&quot;g&quot;</span></code>), which returns a non-<code class="docutils literal notranslate"><span class="pre">None</span></code>
+result and prevents the guardrail from running at all. Pick a priority
+strictly greater than 100 (the example uses <code class="docutils literal notranslate"><span class="pre">1000</span></code>) rather than relying on
+the name tie-break.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">--no-confirm</span></code>/<code class="docutils literal notranslate"><span class="pre">-y</span></code> only stops gptme from registering its <em>interactive</em>
+confirmation hooks (<code class="docutils literal notranslate"><span class="pre">cli_confirm</span></code>/<code class="docutils literal notranslate"><span class="pre">server_confirm</span></code>). A plugin-registered
+<code class="docutils literal notranslate"><span class="pre">TOOL_CONFIRM</span></code> hook is still called, so a <code class="docutils literal notranslate"><span class="pre">skip</span></code> result keeps blocking
+execution in autonomous runs. This is what makes the hook usable as a real
+guardrail rather than a prompt.</p>
+</div>
+</section>
+<section id="built-in-credential-output-policy">
+<h3>Built-in Credential-Output Policy<a class="headerlink" href="#built-in-credential-output-policy" title="Link to this heading">#</a></h3>
+<p>The built-in <code class="docutils literal notranslate"><span class="pre">guardrails</span></code> confirmation hook (priority 200) also recognizes
+obvious credential-output shell commands. Like its existing destructive-command
+and secret-path rules, it follows <code class="docutils literal notranslate"><span class="pre">GPTME_GUARDRAILS</span></code>: <code class="docutils literal notranslate"><span class="pre">shadow</span></code> (default) logs
+and allows, <code class="docutils literal notranslate"><span class="pre">enforce</span></code> skips execution, and <code class="docutils literal notranslate"><span class="pre">off</span></code> disables the hook. Merely
+installing this detector does <strong>not</strong> enable enforcement. The hook must also
+be registered and allowed by the runtime’s hook configuration.</p>
+<p>Covered literal syntax includes shell xtrace (<code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">-eux</span></code>, <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">-x</span></code>,
+<code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-x</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-o</span> <span class="pre">xtrace</span></code>, <code class="docutils literal notranslate"><span class="pre">BASH_XTRACEFD</span></code> assignments), environment dumps
+(<code class="docutils literal notranslate"><span class="pre">env</span></code>, <code class="docutils literal notranslate"><span class="pre">printenv</span></code>), variable-state dumps (bare <code class="docutils literal notranslate"><span class="pre">set</span></code>, <code class="docutils literal notranslate"><span class="pre">export</span></code>/<code class="docutils literal notranslate"><span class="pre">declare</span></code>/
+<code class="docutils literal notranslate"><span class="pre">typeset</span></code> and their <code class="docutils literal notranslate"><span class="pre">-p</span></code> forms), and sensitive variable expansions printed
+by <code class="docutils literal notranslate"><span class="pre">echo</span></code>/<code class="docutils literal notranslate"><span class="pre">printf</span></code>. Sensitive names have a KEY, TOKEN, SECRET, PASSWORD,
+PASSWD or CREDENTIAL(S) underscore-delimited component. Simple <code class="docutils literal notranslate"><span class="pre">env</span></code>,
+<code class="docutils literal notranslate"><span class="pre">command</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code> and option-free <code class="docutils literal notranslate"><span class="pre">sudo</span></code> wrappers, shell <code class="docutils literal notranslate"><span class="pre">-c</span></code> strings,
+command substitutions and shell-fed heredocs are inspected. Shell options
+are inspected only before the script/command argument, not script arguments.
+Refusal reasons and shadow logs contain a fixed description, never matched
+source text or variable values.</p>
+<p>Benign forms include <code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">NAME=value</span> <span class="pre">command</span></code>, <code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">-i</span> <span class="pre">...</span> <span class="pre">command</span></code>,
+<code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">+x</span></code>, name-only <code class="docutils literal notranslate"><span class="pre">compgen</span> <span class="pre">-e</span></code>, literal quoted documentation and heredoc
+data not used as shell code. <code class="docutils literal notranslate"><span class="pre">printenv</span></code> allows only explicitly non-secret
+names: PATH, HOME, LANG, SHELL, TERM, PWD, USER, LOGNAME and TZ. Variable length
+and literal presence diagnostics (<code class="docutils literal notranslate"><span class="pre">${#API_KEY}</span></code>, <code class="docutils literal notranslate"><span class="pre">${API_KEY:+configured}</span></code>)
+are allowed. Using a credential as a process argument is distinct from printing
+it; existing secret-path rules still apply independently.</p>
+<p>This is a bounded accidental-disclosure policy, <strong>not a shell sandbox</strong>.
+It does not resolve dynamic command names, arbitrary interpreters, sourced
+files, script contents, <code class="docutils literal notranslate"><span class="pre">eval</span></code>, all wrapper options or obfuscated expansions.
+Function definitions and unreachable branches are scanned conservatively.
+Name-only pipelines following a dump are still blocked: a downstream filter
+is not proof that tracing or intermediate output cannot expose a credential.
+Do not infer new-pattern false-positive rates from older shadow logs; evaluate
+fresh exposure before enabling the entire hook in unattended sessions.</p>
+</section>
+</section>
+<section id="managing-hooks">
+<h2>Managing Hooks<a class="headerlink" href="#managing-hooks" title="Link to this heading">#</a></h2>
+<section id="query-hooks">
+<h3>Query Hooks<a class="headerlink" href="#query-hooks" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_hooks</span><span class="p">,</span> <span class="n">HookType</span>
+
+<span class="c1"># Get all hooks</span>
+<span class="n">all_hooks</span> <span class="o">=</span> <span class="n">get_hooks</span><span class="p">()</span>
+
+<span class="c1"># Get hooks of a specific type</span>
+<span class="n">tool_hooks</span> <span class="o">=</span> <span class="n">get_hooks</span><span class="p">(</span><span class="n">HookType</span><span class="o">.</span><span class="n">TOOL_EXECUTE_POST</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="enable-disable-hooks">
+<h3>Enable/Disable Hooks<a class="headerlink" href="#enable-disable-hooks" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">enable_hook</span><span class="p">,</span> <span class="n">disable_hook</span>
+
+<span class="c1"># Disable a hook</span>
+<span class="n">disable_hook</span><span class="p">(</span><span class="s2">"linter.file_save"</span><span class="p">)</span>
+
+<span class="c1"># Re-enable it</span>
+<span class="n">enable_hook</span><span class="p">(</span><span class="s2">"linter.file_save"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="unregister-hooks">
+<h3>Unregister Hooks<a class="headerlink" href="#unregister-hooks" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">unregister_hook</span><span class="p">,</span> <span class="n">HookType</span>
+
+<span class="c1"># Unregister from specific type</span>
+<span class="n">unregister_hook</span><span class="p">(</span><span class="s2">"my_hook"</span><span class="p">,</span> <span class="n">HookType</span><span class="o">.</span><span class="n">FILE_SAVE_POST</span><span class="p">)</span>
+
+<span class="c1"># Unregister from all types</span>
+<span class="n">unregister_hook</span><span class="p">(</span><span class="s2">"my_hook"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<section id="pre-commit-hook">
+<h3>Pre-commit Hook<a class="headerlink" href="#pre-commit-hook" title="Link to this heading">#</a></h3>
+<p>Automatically run pre-commit checks after files are saved:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gptme.tools.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">HookType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gptme.message</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_precommit</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">created</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Run pre-commit on saved file."""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">"pre-commit"</span><span class="p">,</span> <span class="s2">"run"</span><span class="p">,</span> <span class="s2">"--files"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)],</span>
+            <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">Message</span><span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Pre-commit checks failed:</span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">Message</span><span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="s2">"Pre-commit checks passed"</span><span class="p">,</span> <span class="n">hide</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">Message</span><span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="s2">"Pre-commit checks timed out"</span><span class="p">,</span> <span class="n">hide</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">tool</span> <span class="o">=</span> <span class="n">ToolSpec</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"precommit"</span><span class="p">,</span>
+    <span class="n">desc</span><span class="o">=</span><span class="s2">"Automatic pre-commit checks"</span><span class="p">,</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"precommit_check"</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">HookType</span><span class="o">.</span><span class="n">FILE_SAVE_POST</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">run_precommit</span><span class="p">,</span>
+            <span class="mi">5</span>  <span class="c1"># Run after other hooks</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-context-hook">
+<h3>Memory/Context Hook<a class="headerlink" href="#memory-context-hook" title="Link to this heading">#</a></h3>
+<p>Automatically add context at session start:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_context</span><span class="p">(</span><span class="n">logdir</span><span class="p">,</span> <span class="n">workspace</span><span class="p">,</span> <span class="n">initial_msgs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Add relevant context at session start."""</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">load_relevant_context</span><span class="p">(</span><span class="n">workspace</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">context</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">Message</span><span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Loaded context:</span><span class="se">\n</span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">pinned</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">tool</span> <span class="o">=</span> <span class="n">ToolSpec</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"memory"</span><span class="p">,</span>
+    <span class="n">desc</span><span class="o">=</span><span class="s2">"Automatic context loading"</span><span class="p">,</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"load_context"</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">HookType</span><span class="o">.</span><span class="n">SESSION_START</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">add_context</span><span class="p">,</span>
+            <span class="mi">10</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="linting-hook">
+<h3>Linting Hook<a class="headerlink" href="#linting-hook" title="Link to this heading">#</a></h3>
+<p>Automatically lint files after saving:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lint_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">created</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Lint Python files."""</span>
+    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">".py"</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">"ruff"</span><span class="p">,</span> <span class="s2">"check"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)],</span>
+        <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">Message</span><span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Linting issues:</span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">tool</span> <span class="o">=</span> <span class="n">ToolSpec</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"linter"</span><span class="p">,</span>
+    <span class="n">desc</span><span class="o">=</span><span class="s2">"Automatic Python linting"</span><span class="p">,</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"lint"</span><span class="p">:</span> <span class="p">(</span><span class="n">HookType</span><span class="o">.</span><span class="n">FILE_SAVE_POST</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">lint_file</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="built-in-hooks">
+<h2>Built-in Hooks<a class="headerlink" href="#built-in-hooks" title="Link to this heading">#</a></h2>
+<p>gptme ships with several built-in hooks that provide core functionality:</p>
+<p><strong>Session &amp; Context</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">active_context</span></code>: Selects relevant files to include before generation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">agents_md_inject</span></code>: Loads AGENTS.md/CLAUDE.md when the working directory changes,
+skipping files inside other agents’ workspaces (see <a class="reference internal" href="config.html#agent-instruction-files"><span class="std std-ref">Agent instruction files (AGENTS.md)</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cwd_tracking</span></code>: Tracks the current working directory across tool calls</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_awareness</span></code>: Injects current time into context</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">token_awareness</span></code>: Monitors token budget and warns when approaching limits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cost_awareness</span></code>: Tracks and reports LLM API costs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache_awareness</span></code>: Surfaces cache hit rates for prompt caching</p></li>
+</ul>
+<p><strong>Tool Confirmation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cli_confirm</span></code>: Terminal-based tool confirmation with preview</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto_confirm</span></code>: Auto-approves tools in autonomous/non-interactive mode</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server_confirm</span></code>: Confirmation via WebUI/API for server mode</p></li>
+</ul>
+<p><strong>User Input</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">elicitation</span></code>: Structured user input (forms, choices) in CLI</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server_elicit</span></code>: Elicitation via WebUI/API for server mode</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">form_autodetect</span></code>: Detects when assistant output contains form-like choices</p></li>
+</ul>
+<p><strong>Code Quality</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">markdown_validation</span></code>: Detects codeblock cut-offs in generated content</p></li>
+</ul>
+<p><strong>Agent Awareness</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">workspace_agents</span></code>: Detects parallel agents (gptme, Claude Code, Codex, Goose, OpenCode, Amp) running in the same workspace</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Keep hooks fast</strong>: Hooks run synchronously and can slow down operations</p></li>
+<li><p><strong>Handle errors gracefully</strong>: Use try-except to prevent hook failures from breaking the system</p></li>
+<li><p><strong>Use priorities wisely</strong>: Higher priority hooks run first (use for dependencies)</p></li>
+<li><p><strong>Return Messages appropriately</strong>: Use <code class="docutils literal notranslate"><span class="pre">hide=True</span></code> for verbose/debug messages</p></li>
+<li><p><strong>Test hooks thoroughly</strong>: Hooks run in the main execution path</p></li>
+<li><p><strong>Document hook behavior</strong>: Explain what your hooks do and when they run</p></li>
+<li><p><strong>Consider disabling hooks</strong>: Make hooks easy to disable via configuration</p></li>
+</ol>
+</section>
+<section id="thread-safety">
+<h2>Thread Safety<a class="headerlink" href="#thread-safety" title="Link to this heading">#</a></h2>
+<p>The hook registry is thread-safe. Each thread maintains its own tool state, and hooks are registered per-thread.</p>
+<p>When running in server mode with multiple workers, hooks must be registered in each worker process.</p>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<p>Script hooks are declared in configuration, with their priority set per entry.
+Global hooks go in <code class="docutils literal notranslate"><span class="pre">~/.config/gptme/config.toml</span></code> and project hooks in
+<code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code>; the lists are additive and run in descending <code class="docutils literal notranslate"><span class="pre">priority</span></code> order:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[[hooks.scripts]]</span>
+<span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"session.end"</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"~/bin/save-agent-context"</span>
+<span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span>
+<span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+</pre></div>
+</div>
+<p>Hooks registered in Python are enabled and disabled at runtime through the
+registry, not through environment variables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gptme.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">disable_hook</span><span class="p">,</span> <span class="n">enable_hook</span>
+
+<span class="n">disable_hook</span><span class="p">(</span><span class="s2">"precommit.precommit_check"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="config.html#global-config"><span class="std std-ref">Global config</span></a> and <a class="reference internal" href="config.html#project-config"><span class="std std-ref">Project config</span></a> for the full configuration
+reference.</p>
+</section>
+<section id="migration-guide">
+<h2>Migration Guide<a class="headerlink" href="#migration-guide" title="Link to this heading">#</a></h2>
+<section id="converting-existing-features-to-hooks">
+<h3>Converting Existing Features to Hooks<a class="headerlink" href="#converting-existing-features-to-hooks" title="Link to this heading">#</a></h3>
+<p>If you have features that should be hooks:</p>
+<ol class="arabic simple">
+<li><p><strong>Identify the appropriate hook type</strong>: Choose from the available hook types</p></li>
+<li><p><strong>Extract the logic</strong>: Move the feature logic into a hook function</p></li>
+<li><p><strong>Register the hook</strong>: Add it to a ToolSpec or register programmatically</p></li>
+<li><p><strong>Test thoroughly</strong>: Ensure the hook works in all scenarios</p></li>
+<li><p><strong>Update documentation</strong>: Document the new hook</p></li>
+</ol>
+<section id="example-converting-pre-commit-checks-to-a-hook">
+<h4>Example: Converting pre-commit checks to a hook<a class="headerlink" href="#example-converting-pre-commit-checks-to-a-hook" title="Link to this heading">#</a></h4>
+<p><strong>Before</strong> (hard-coded in chat.py):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In chat.py</span>
+<span class="k">if</span> <span class="n">check_for_modifications</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
+    <span class="n">run_precommit_checks</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>After</strong> (as a hook):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In a tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">precommit_hook</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="n">workspace</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">check_for_modifications</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
+        <span class="n">run_precommit_checks</span><span class="p">()</span>
+
+<span class="n">tool</span> <span class="o">=</span> <span class="n">ToolSpec</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"precommit"</span><span class="p">,</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"check"</span><span class="p">:</span> <span class="p">(</span><span class="n">HookType</span><span class="o">.</span><span class="n">TURN_POST</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">precommit_hook</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="module-gptme.hooks">
+<span id="api-reference"></span><h2>API Reference<a class="headerlink" href="#module-gptme.hooks" title="Link to this heading">#</a></h2>
+<p>Hook system for extending gptme functionality at various lifecycle points.</p>
+<p>This package provides a hook registry for registering and triggering hooks at
+various points in the gptme lifecycle. The system is split into:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">types</span></code>: Type definitions (Protocol classes, HookType enum, Hook dataclass)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">registry</span></code>: Hook registry, registration, and execution infrastructure</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confirm</span></code>: Tool confirmation hooks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elicitation</span></code>: Structured user input hooks</p></li>
+</ul>
+<p>Individual hook implementations live in their own modules (e.g., <code class="docutils literal notranslate"><span class="pre">cwd_changed</span></code>,
+<code class="docutils literal notranslate"><span class="pre">time_awareness</span></code>, <code class="docutils literal notranslate"><span class="pre">workspace_agents</span></code>).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="gptme.hooks.init_hooks">
+<span class="sig-prename descclassname"><span class="pre">gptme.hooks.</span></span><span class="sig-name descname"><span class="pre">init_hooks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowlist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#gptme.hooks.init_hooks" title="Link to this definition">#</a></dt>
+<dd><p>Initialize and register hooks in a thread-safe manner.</p>
+<p>Mode detection for confirmation hooks:</p>
+<ul class="simple">
+<li><p>Interactive CLI mode with confirmation: Registers cli_confirm hook</p></li>
+<li><p>Server mode with confirmation: Registers server_confirm hook</p></li>
+<li><p>Non-interactive mode: No confirmation hook (autonomous/auto-confirm)</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>allowlist</strong> – Explicit list of hooks to register (replaces defaults).
+If not provided, defaults will be loaded from env/config.</p></li>
+<li><p><strong>interactive</strong> – Whether running in interactive mode (CLI).</p></li>
+<li><p><strong>no_confirm</strong> – Whether to skip tool confirmations.</p></li>
+<li><p><strong>server</strong> – Whether running in server mode (API/WebUI).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="tools.html"><span class="doc">Tools</span></a> - Tool system documentation</p></li>
+<li><p><a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> - Configuration options</p></li>
+<li><p><a class="reference external" href="https://github.com/gptme/gptme/issues/156">Issue #156</a> - Original feature request</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="custom_tool.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Custom Tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mcp.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MCP</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hook-types">Hook Types</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turn-and-step-lifecycle-hooks">Turn And Step Lifecycle Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-lifecycle-hooks">Tool Lifecycle Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-operation-hooks">File Operation Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-lifecycle-hooks">Session Lifecycle Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-hooks">Generation Hooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-hooks-from-tools">Registering Hooks from Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-hooks-programmatically">Registering Hooks Programmatically</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hook-function-signatures">Hook Function Signatures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confirmation-hooks-and-deny-decisions">Confirmation Hooks and Deny Decisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-credential-output-policy">Built-in Credential-Output Policy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-hooks">Managing Hooks</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-hooks">Query Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-disable-hooks">Enable/Disable Hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unregister-hooks">Unregister Hooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit-hook">Pre-commit Hook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-context-hook">Memory/Context Hook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-hook">Linting Hook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-hooks">Built-in Hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-safety">Thread Safety</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migration-guide">Migration Guide</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-existing-features-to-hooks">Converting Existing Features to Hooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-converting-pre-commit-checks-to-a-hook">Example: Converting pre-commit checks to a hook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gptme.hooks">API Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme.hooks.init_hooks"><code class="docutils literal notranslate"><span class="pre">init_hooks()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See Also</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Erik Bjäreholt
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Erik Bjäreholt.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>v0.28.1 &#8212; gptme</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../_static/asciinema-player_3.12.1.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3a28e17f" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/asciinema-player_3.12.1.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'releases/v0.28.1';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://gptme.org/docs/releases/v0.28.1.html" />
+    <link rel="icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="v0.28.0" href="v0.28.0.html" />
+    <link rel="prev" title="v0.28.2" href="v0.28.2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="auto">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="gptme - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="gptme - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../getting-started.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../system-dependencies.html">Extras and System Dependencies</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../demos.html">Demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/choose-workflow.html">Choose a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/minimal-context.html">Minimal Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/edit-files.html">Edit Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/code-review.html">Review Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/debug-python.html">Debug Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/refactor.html">Refactor Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/automate-task.html">Automate Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/parallel-research.html">Parallel Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/computer-use.html">Computer Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/skills-workflows.html">Reusable Skills</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/custom-tool-plugin.html">Custom Tool Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howto/tts-setup.html">Text-to-Speech</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using gptme</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../providers.html">Providers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../providers-supported.html">Supported Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../providers-custom.html">Custom and Local Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../providers-integration.html">Provider Integration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tool-formats.html">Tool Formats</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/read.html">Read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/save.html">Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/patch.html">Patch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/morph.html">Morph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/hashline-edit.html">Hashline Edit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/patch-many.html">Patch many</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/convert.html">Convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/gh.html">GitHub (gh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/precommit.html">Precommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/autocommit.html">Autocommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/browser.html">Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/rag.html">RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/chats.html">Chats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/vision.html">Vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/screenshot.html">Screenshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/computer.html">Computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/choice.html">Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/elicit.html">Elicit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/form.html">Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tmux.html">Tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/subagent.html">Subagent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/complete.html">Complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/restart.html">Restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/vent.html">Vent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/request-tool-change.html">Request Tool Change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/watch.html">Watch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/progress.html">Progress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/clarify.html">Clarify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/lessons.html">Lessons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/todo.html">Todo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/mcp.html">MCP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../automation.html">Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cli.html">CLI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/gptme.html">gptme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/gptme-server.html">gptme-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/gptme-tui.html">gptme-tui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/gptme-util.html">gptme-util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/agents.html">Agent Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/gptme-mcp-server.html">gptme-mcp-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/setup.html">Setup and Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/sessions.html">Sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/evaluation.html">Evaluation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../tui.html">TUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app.html">App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acp.html">ACP</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../channels.html">Channels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bot.html">GitHub Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../channels/email.html">Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../channels/agent-messaging.html">Agent Messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../channels/chat.html">Chat Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../channels/voice.html">Voice</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents &amp; Context</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../agents.html">Agents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../agents/workspace.html">Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/autonomous.html">Running autonomously</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../profiles.html">Profiles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../lessons.html">Lessons</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../skills.html">Skills</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../skills-gallery.html">Gallery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../memory.html">Memory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extending gptme</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugin System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_tool.html">Custom Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mcp.html">MCP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr-lifecycle.html">PR Lifecycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building.html">Building Executables</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/llm.html">LLMs and Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/config.html">Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/plugins.html">Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/prompts.html">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/server.html">Server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../context-compression.html">Context Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evals.html">Evals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../finetuning.html">Finetuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/index.html">Design Documents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/hook-based-confirmations.html">Hook-Based Tool Confirmations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/elicitation.html">Generalized Elicitation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/ptc-tool-interface.html">Programmatic Tool Calling (PTC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/transcript-persistence.html">Transcript Persistence</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../alternatives.html">Alternatives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arewetiny.html">Are we tiny?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/acronyms.html">What does “gptme” stand for?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../timeline.html">Timeline</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../changelog.html">Changelog</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v0.35.1.html">v0.35.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.35.0.html">v0.35.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.34.0.html">v0.34.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.33.0.html">v0.33.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.32.1.html">v0.32.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.32.0.html">v0.32.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.31.0.html">v0.31.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.30.0.html">v0.30.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.29.0.html">v0.29.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.28.3.html">v0.28.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.28.2.html">v0.28.2</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">v0.28.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.28.0.html">v0.28.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.27.0.html">v0.27.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.26.0.html">v0.26.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.25.0.html">v0.25.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.24.1.html">v0.24.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.24.0.html">v0.24.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.23.0.html">v0.23.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.22.0.html">v0.22.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.21.0.html">v0.21.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.20.0.html">v0.20.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.19.0.html">v0.19.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.18.0.html">v0.18.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.17.0.html">v0.17.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.16.0.html">v0.16.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.15.0.html">v0.15.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.14.0.html">v0.14.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.13.0.html">v0.13.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.12.0.html">v0.12.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.11.0.html">v0.11.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.10.5.html">v0.10.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.10.4.html">v0.10.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.10.3.html">v0.10.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.10.2.html">v0.10.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.10.1.html">v0.10.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.10.0.html">v0.10.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.9.4.html">v0.9.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.9.3.html">v0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.9.2.html">v0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.9.1.html">v0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.9.0.html">v0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.8.1.html">v0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.8.0.html">v0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.7.0.html">v0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.6.1.html">v0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.6.0.html">v0.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.5.0.html">v0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.4.2.html">v0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.4.1.html">v0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.4.0.html">v0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.3.3.html">v0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.3.2.html">v0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.3.1.html">v0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.3.0.html">v0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.2.2.html">v0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.2.1.html">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.1.1.html">v0.1.1</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gptme/gptme">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://discord.gg/NMaCmmkxWv">Discord</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://x.com/gptmeorg">X</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme/edit/master/docs/releases/v0.28.1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/releases/v0.28.1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>v0.28.1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme">📦 gptme</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-14">✨ Features (14)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixes-25">🐛 Fixes (25)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misc-13">🔨 Misc (13)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="v0-28-1">
+<h1>v0.28.1<a class="headerlink" href="#v0-28-1" title="Link to this heading">#</a></h1>
+<p>These are the release notes for gptme version v0.28.1.</p>
+<section id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
+<p>Thanks to everyone who contributed to this release:</p>
+<p>&#64;delorenj, &#64;erikbjare</p>
+</section>
+<section id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h2>
+<p>Changes since v0.28.0:</p>
+</section>
+<section id="gptme">
+<h2>📦 gptme<a class="headerlink" href="#gptme" title="Link to this heading">#</a></h2>
+<section id="features-14">
+<h3>✨ Features (14)<a class="headerlink" href="#features-14" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>feat: add denylist for dangerous shell commands with specific deny reasons (<a class="reference external" href="https://github.com/gptme/gptme/issues/648">#648</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/5b97784620af1a675105ee6485285667ee48b2f0"><code class="docutils literal notranslate"><span class="pre">5b977846</span></code></a>)</p></li>
+<li><p>feat: implement get_model TODO and fix critical telemetry bug (<a class="reference external" href="https://github.com/gptme/gptme/issues/647">#647</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/9c05ac26966af06d51dfdae9a9c3e3bfeba60dbe"><code class="docutils literal notranslate"><span class="pre">9c05ac26</span></code></a>)</p></li>
+<li><p>feat: add trajectory-rich tasks for GEPA optimization (<a class="reference external" href="https://github.com/gptme/gptme/issues/640">#640</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/962bdf3c396c47a07e15edfc767e105eff646634"><code class="docutils literal notranslate"><span class="pre">962bdf3c</span></code></a>)</p></li>
+<li><p>feat: add user-level files support in config (<a class="reference external" href="https://github.com/gptme/gptme/issues/639">#639</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/fb3bbfb7d55d33677c30b2cbd6a67cf9bef13d6e"><code class="docutils literal notranslate"><span class="pre">fb3bbfb7</span></code></a>)</p></li>
+<li><p>feat: add HTTP MCP Server Support + CLI Management Tools (<a class="reference external" href="https://github.com/gptme/gptme/issues/635">#635</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/0a4ef3493da315d5fdb7e9f4da06a1704c4cd551"><code class="docutils literal notranslate"><span class="pre">0a4ef349</span></code></a>)</p></li>
+<li><p>feat: added cross-conversation context (<a class="reference external" href="https://github.com/gptme/gptme/issues/636">#636</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/54f289ec7fcea770e4dca886dd2930239e5448c0"><code class="docutils literal notranslate"><span class="pre">54f289ec</span></code></a>)</p></li>
+<li><p>feat: add cache-aware cost calculation, use in telemetry (<a class="reference external" href="https://github.com/gptme/gptme/issues/631">#631</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/b3cd6e0742cffc3f84e78b773c131b5350f0b14e"><code class="docutils literal notranslate"><span class="pre">b3cd6e07</span></code></a>)</p></li>
+<li><p>feat: dspy experiment (<a class="reference external" href="https://github.com/gptme/gptme/issues/627">#627</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/fb61dddad38529d4ebe4dc7632d764d90e63d1c2"><code class="docutils literal notranslate"><span class="pre">fb61ddda</span></code></a>)</p></li>
+<li><p>feat: filter out resolved comments from GitHub PR content (<a class="reference external" href="https://github.com/gptme/gptme/commit/d612a355c7760def492b38ff8c90006b78cf00cf"><code class="docutils literal notranslate"><span class="pre">d612a355</span></code></a>)</p></li>
+<li><p>feat: add GitHub Actions status to PR content fetching (<a class="reference external" href="https://github.com/gptme/gptme/commit/947700de3ca8c05726eccb5e41fe90d4e09a6034"><code class="docutils literal notranslate"><span class="pre">947700de</span></code></a>)</p></li>
+<li><p>feat: add auto-naming for conversations in server API (<a class="reference external" href="https://github.com/gptme/gptme/issues/621">#621</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/cfce2bc8d114b6b7cf41ee0310ff59e27708ce0b"><code class="docutils literal notranslate"><span class="pre">cfce2bc8</span></code></a>)</p></li>
+<li><p>feat: add todo tools for conversation-scoped task management (<a class="reference external" href="https://github.com/gptme/gptme/issues/622">#622</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/ce3bfe72b6fdfc9fae7ecd24e6132e4affc0eee3"><code class="docutils literal notranslate"><span class="pre">ce3bfe72</span></code></a>)</p></li>
+<li><p>feat: include pwd and agent workspace path in system prompt (<a class="reference external" href="https://github.com/gptme/gptme/commit/b38e06d026390aec165c27d4e3d079470881b073"><code class="docutils literal notranslate"><span class="pre">b38e06d0</span></code></a>)</p></li>
+<li><p>feat: add GitHub issue/PR link handling in context (<a class="reference external" href="https://github.com/gptme/gptme/issues/619">#619</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/f79e2428391de9cfca486121036190427f199773"><code class="docutils literal notranslate"><span class="pre">f79e2428</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="fixes-25">
+<h3>🐛 Fixes (25)<a class="headerlink" href="#fixes-25" title="Link to this heading">#</a></h3>
+<details><summary>Click to expand</summary>
+<p>
+<ul class="simple">
+<li><p>fix(api): support auto-generating agent path from name (<a class="reference external" href="https://github.com/gptme/gptme/issues/646">#646</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/62534a950b462e60621c63b13fe0d82178a3f93d"><code class="docutils literal notranslate"><span class="pre">62534a95</span></code></a>)</p></li>
+<li><p>fix: propagate agent logdir from subprocess in DSPy evaluations (<a class="reference external" href="https://github.com/gptme/gptme/issues/643">#643</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/d6c9fc69ebe0bddf91b30f178c2afb34b7b5407e"><code class="docutils literal notranslate"><span class="pre">d6c9fc69</span></code></a>)</p></li>
+<li><p>fix(eval): fix DSPy integration to use real evaluation specs (<a class="reference external" href="https://github.com/gptme/gptme/issues/630">#630</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/fa48bb3402d0572d741bde962fc3958027847ad4"><code class="docutils literal notranslate"><span class="pre">fa48bb34</span></code></a>)</p></li>
+<li><p>fix: added qwen3-max metadata (<a class="reference external" href="https://github.com/gptme/gptme/commit/a471d1de061e9a00666a8a18b0368c95438986de"><code class="docutils literal notranslate"><span class="pre">a471d1de</span></code></a>)</p></li>
+<li><p>fix: add initial support for magistral models (<a class="reference external" href="https://github.com/gptme/gptme/commit/59dce119f425251c6a6750cfcb17ef9ab1cac72e"><code class="docutils literal notranslate"><span class="pre">59dce119</span></code></a>)</p></li>
+<li><p>fix: fixes on top of HTTP MCP server support (<a class="reference external" href="https://github.com/gptme/gptme/issues/637">#637</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/21dc660a3045c98b30041ae67e68b07f42752ce5"><code class="docutils literal notranslate"><span class="pre">21dc660a</span></code></a>)</p></li>
+<li><p>fix: switch to sonar-pro by default for perplexity (<a class="reference external" href="https://github.com/gptme/gptme/commit/d9e99aef297e02ea0279b8df52fa7a6f2dbf71cf"><code class="docutils literal notranslate"><span class="pre">d9e99aef</span></code></a>)</p></li>
+<li><p>fix: extract env vars to constants (<a class="reference external" href="https://github.com/gptme/gptme/commit/0eb0c9b011b34b4d95c9a417d65324b360aa9b63"><code class="docutils literal notranslate"><span class="pre">0eb0c9b0</span></code></a>)</p></li>
+<li><p>fix: improve todo tool, support writing multiple tasks in one tool call (<a class="reference external" href="https://github.com/gptme/gptme/commit/61727b43277fdae22a82f7bd9a2d03253901a345"><code class="docutils literal notranslate"><span class="pre">61727b43</span></code></a>)</p></li>
+<li><p>fix: correct optimizers parameter format in workflow (<a class="reference external" href="https://github.com/gptme/gptme/commit/9c565269392df5df7b897ef146cdee4cb1208f08"><code class="docutils literal notranslate"><span class="pre">9c565269</span></code></a>)</p></li>
+<li><p>fix: handle models that dont support vision, stricter openrouter provider selection, fixes to deepseek &amp; kimi-k2 (<a class="reference external" href="https://github.com/gptme/gptme/commit/1c18c3fa903456f23fdd8a141f1448963819f053"><code class="docutils literal notranslate"><span class="pre">1c18c3fa</span></code></a>)</p></li>
+<li><p>fix: added chime to generate_sounds script (<a class="reference external" href="https://github.com/gptme/gptme/commit/fe24000fded14ed683db28f4a530ea182da9daa5"><code class="docutils literal notranslate"><span class="pre">fe24000f</span></code></a>)</p></li>
+<li><p>fix: misc fixes (<a class="reference external" href="https://github.com/gptme/gptme/issues/626">#626</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/ff0b6c74b71b85453e2e384b47f79466ca8a2076"><code class="docutils literal notranslate"><span class="pre">ff0b6c74</span></code></a>)</p></li>
+<li><p>fix: catch exception if image file cannot be read (<a class="reference external" href="https://github.com/gptme/gptme/commit/8165857c3f0b84de85faabc381d76475393fc0b1"><code class="docutils literal notranslate"><span class="pre">8165857c</span></code></a>)</p></li>
+<li><p>fix: update provider examples (<a class="reference external" href="https://github.com/gptme/gptme/commit/faf56f60a7c87fc457beec733272b3a36893489c"><code class="docutils literal notranslate"><span class="pre">faf56f60</span></code></a>)</p></li>
+<li><p>fix: move GitHub Actions status to end of PR content (<a class="reference external" href="https://github.com/gptme/gptme/commit/174cc4095f332ea953addbeaa80a63902390b3ed"><code class="docutils literal notranslate"><span class="pre">174cc409</span></code></a>)</p></li>
+<li><p>fix: make morph tool work with all tool formats (fixes <a class="reference external" href="https://github.com/gptme/gptme/issues/603">#603</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/181a5fca12d583613aaad8e62b8fac9f473103e1"><code class="docutils literal notranslate"><span class="pre">181a5fca</span></code></a>)</p></li>
+<li><p>fix: better tree output (<a class="reference external" href="https://github.com/gptme/gptme/issues/624">#624</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/6782d81abfc681144ef799a40097b737e32fd8e1"><code class="docutils literal notranslate"><span class="pre">6782d81a</span></code></a>)</p></li>
+<li><p>fix: fixed todo tools (<a class="reference external" href="https://github.com/gptme/gptme/commit/daf128aa0c2439b6cae7f631fe7e75834aefaa4b"><code class="docutils literal notranslate"><span class="pre">daf128aa</span></code></a>)</p></li>
+<li><p>fix: add browser resilience with auto-restart and retry mechanism (<a class="reference external" href="https://github.com/gptme/gptme/commit/26c93942101f5373fd84caa6acc4c6fc1b2ea4ff"><code class="docutils literal notranslate"><span class="pre">26c93942</span></code></a>)</p></li>
+<li><p>fix: include starting working directory and use absolute paths in system prompt (<a class="reference external" href="https://github.com/gptme/gptme/commit/204d09d2c398f50c082d37987d80e125bb1f559b"><code class="docutils literal notranslate"><span class="pre">204d09d2</span></code></a>)</p></li>
+<li><p>fix(server): fix setting initial working directory from workspace (<a class="reference external" href="https://github.com/gptme/gptme/commit/03aa619efc0444c65dab98812c0708008663421c"><code class="docutils literal notranslate"><span class="pre">03aa619e</span></code></a>)</p></li>
+<li><p>fix: use “Initial Working Directory” instead of “Current Directory” (<a class="reference external" href="https://github.com/gptme/gptme/commit/c6cbc2722304251ac01cfbb768f297c0d4848565"><code class="docutils literal notranslate"><span class="pre">c6cbc272</span></code></a>)</p></li>
+<li><p>fix: exclude untracked files from autocommit status check (<a class="reference external" href="https://github.com/gptme/gptme/commit/da5fb7f5d689aee2be361a69f932d6968f2e4c3b"><code class="docutils literal notranslate"><span class="pre">da5fb7f5</span></code></a>)</p></li>
+<li><p>fix: resolve audio blocking and ALSA/PulseAudio timeout issues (<a class="reference external" href="https://github.com/gptme/gptme/issues/620">#620</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/d6703e85d91a08b09a9a868823c35b2c3dc74f4d"><code class="docutils literal notranslate"><span class="pre">d6703e85</span></code></a>)</p></li>
+</ul>
+</p>
+</details>
+</section>
+<section id="misc-13">
+<h3>🔨 Misc (13)<a class="headerlink" href="#misc-13" title="Link to this heading">#</a></h3>
+<details><summary>Click to expand</summary>
+<p>
+<ul class="simple">
+<li><p>chore: bump version to 0.28.1 (<a class="reference external" href="https://github.com/gptme/gptme/commit/dae71fc518ffe87bee86962c4233d9f0584c2943"><code class="docutils literal notranslate"><span class="pre">dae71fc5</span></code></a>)</p></li>
+<li><p>test: fix todo tool test expectations to match implementation (<a class="reference external" href="https://github.com/gptme/gptme/commit/e9ff2efce102e31f6369b7d2c30796ee94de22af"><code class="docutils literal notranslate"><span class="pre">e9ff2efc</span></code></a>)</p></li>
+<li><p>docs: fixed incorrect example (<a class="reference external" href="https://github.com/gptme/gptme/commit/1aaad3d0773ef94ac2b3cb42b216e5bcc0ee89c2"><code class="docutils literal notranslate"><span class="pre">1aaad3d0</span></code></a>)</p></li>
+<li><p>chore: comment out excessive debug logging (<a class="reference external" href="https://github.com/gptme/gptme/commit/65f68e235390cafc0c98cb2a447e0fb511a789fc"><code class="docutils literal notranslate"><span class="pre">65f68e23</span></code></a>)</p></li>
+<li><p>refactor: improve ask_execute variable naming and imports (<a class="reference external" href="https://github.com/gptme/gptme/commit/471ad1b505eaca9e4290394597db7f13816121dd"><code class="docutils literal notranslate"><span class="pre">471ad1b5</span></code></a>)</p></li>
+<li><p>docs: clarify gptme description and improve usage examples (<a class="reference external" href="https://github.com/gptme/gptme/commit/f606ccd2288f17e76abb5f970307989b7ddc2b75"><code class="docutils literal notranslate"><span class="pre">f606ccd2</span></code></a>)</p></li>
+<li><p>docs: fix outdated model reference (<a class="reference external" href="https://github.com/gptme/gptme/commit/d7a062649f1925680c8897d24602feee05169ff8"><code class="docutils literal notranslate"><span class="pre">d7a06264</span></code></a>)</p></li>
+<li><p>chore: fix gitignore (<a class="reference external" href="https://github.com/gptme/gptme/commit/8e2628185f7a7722bbd2ec10c7c17c278597da47"><code class="docutils literal notranslate"><span class="pre">8e262818</span></code></a>)</p></li>
+<li><p>docs: fix docs for changelog/release notes (<a class="reference external" href="https://github.com/gptme/gptme/issues/623">#623</a>) (<a class="reference external" href="https://github.com/gptme/gptme/commit/8c6caf5f19210384465818fb39368cd667a2e59f"><code class="docutils literal notranslate"><span class="pre">8c6caf5f</span></code></a>)</p></li>
+<li><p>docs: create changelogs for tagged versions in ./docs/changelog using make target (<a class="reference external" href="https://github.com/gptme/gptme/commit/4f69ef2e88779ad56721fc1a6870467cf86c22fd"><code class="docutils literal notranslate"><span class="pre">4f69ef2e</span></code></a>)</p></li>
+<li><p>docs: update project description to emphasize modern agent capabilities (<a class="reference external" href="https://github.com/gptme/gptme/commit/37a179a118cebda9f20d50180c167ce480477840"><code class="docutils literal notranslate"><span class="pre">37a179a1</span></code></a>)</p></li>
+<li><p>Improve tree output and autocommit functionality (<a class="reference external" href="https://github.com/gptme/gptme/commit/a6008fc29ecf45494b6515e4ab3df05ef01bc13b"><code class="docutils literal notranslate"><span class="pre">a6008fc2</span></code></a>)</p></li>
+<li><p>chore: updated changelog_contributors.csv cache (<a class="reference external" href="https://github.com/gptme/gptme/commit/f045f329e32d80222d4c4c398675e5d0bcb06d04"><code class="docutils literal notranslate"><span class="pre">f045f329</span></code></a>)</p></li>
+</ul>
+</p>
+</details>
+<p><em>(excluded 8 less relevant <a class="reference external" href="https://github.com/gptme/gptme/compare/v0.28.0...v0.28.1">commits</a>)</em></p>
+<p><strong>Full Changelog</strong>: https://github.com/gptme/gptme/compare/v0.28.0…v0.28.1</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="v0.28.2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">v0.28.2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="v0.28.0.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">v0.28.0</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gptme">📦 gptme</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-14">✨ Features (14)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixes-25">🐛 Fixes (25)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misc-13">🔨 Misc (13)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Erik Bjäreholt
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Erik Bjäreholt.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

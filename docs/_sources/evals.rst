@@ -1,0 +1,258 @@
+:audience: developer
+
+Evals
+=====
+
+gptme provides LLMs with a wide variety of tools, but how well do models make use of them? Which tasks can they complete, and which ones do they struggle with? How far can they get on their own, without any human intervention?
+
+To answer these questions, we have created an evaluation suite that tests the capabilities of LLMs on a wide variety of tasks.
+
+The suite covers fundamental tool use, web browsing, project initialization, and a growing set of **practical programming tasks** that reflect real-world agentic work: building APIs, refactoring code, parsing data formats, writing tests, and more.
+
+For which model to use based on these results, see :doc:`models`; for each
+provider's default model, see :ref:`default-models`.
+
+.. _model-leaderboard:
+
+Model Leaderboard
+-----------------
+
+The table below shows pass rates across our eval suites for each model (best tool format per model). Models are ranked by overall pass rate, with breakdowns by suite type.
+
+.. command-output:: python -m gptme.eval.leaderboard --results-dir eval_results --format rst --min-tests 4
+   :cwd: ..
+   :shell:
+
+**Notes:**
+
+- *Format* shows the best-performing ``--tool-format`` for each model (see :doc:`tool-formats`).
+- *Basic* tests cover fundamental tool use (file I/O, shell, git, Python).
+- *Practical* tests cover real-world programming tasks (APIs, data processing, refactoring).
+- Models with fewer than 4 tests are excluded.
+- Results use a 300-second timeout per test. Some models may perform better with longer timeouts.
+
+To generate this table locally:
+
+.. code-block:: bash
+
+    gptme-eval --leaderboard --leaderboard-format rst
+    gptme-eval --leaderboard --leaderboard-format csv       # for data analysis
+    gptme-eval --leaderboard --leaderboard-format markdown   # for GitHub/blog
+    gptme-eval --leaderboard --leaderboard-format html       # self-contained HTML page
+
+
+Usage
+-----
+
+You can run the simple ``hello`` eval like this:
+
+.. code-block:: bash
+
+    gptme-eval hello --model anthropic/claude-sonnet-4-6
+
+However, we recommend running it in Docker to improve isolation and reproducibility:
+
+.. code-block:: bash
+
+    make build-docker
+    docker run \
+        -e "ANTHROPIC_API_KEY=<your api key>" \
+        -v $(pwd)/eval_results:/app/eval_results \
+        gptme-eval hello --model anthropic/claude-sonnet-4-6
+
+Policy-governed sandboxes
+-------------------------
+
+Eval tasks run code the model wrote, so the execution environment is the thing
+under test as much as the model is. Docker gives process isolation; it does not
+by itself constrain which files the code can read, which hosts it can reach, or
+which credentials it can exfiltrate.
+
+`NVIDIA OpenShell <https://github.com/NVIDIA/OpenShell>`_ is an optional
+alternative runtime for that: agents run under kernel-enforced policy
+(Landlock for filesystem access, seccomp for network), network egress is
+mediated by a supervisor, and credentials are injected only for approved
+endpoints rather than passed into the sandbox as environment variables. The
+existing ``gptme-eval:latest`` image can be used directly as the sandbox image:
+
+.. code-block:: bash
+
+    make build-docker
+    # providers/anthropic.yaml ships with OpenShell, not gptme. Fetch the
+    # example profile first (see link below) and edit it for your image.
+    openshell provider profile import -f providers/anthropic.yaml --global
+    openshell sandbox create \
+        --from gptme-eval:latest \
+        --provider anthropic \
+        -- gptme-eval hello --model anthropic/claude-sonnet-4-6
+
+Unlike the Docker example, no API key is passed in through the sandbox
+environment. The Anthropic key is declared once as a provider profile and the
+supervisor injects it, as ``ANTHROPIC_API_KEY``, only for the endpoints that
+profile allows (``api.anthropic.com``).
+
+The profile is not part of this repository: OpenShell keeps a set of reviewable
+example profiles — `providers/anthropic.yaml
+<https://github.com/NVIDIA/OpenShell/blob/main/providers/anthropic.yaml>`_
+among them — in `its repository
+<https://github.com/NVIDIA/OpenShell/tree/main/providers>`_. These examples are
+not compiled into the gateway: a gateway serves exactly the profiles an operator
+imported, so a new one starts with an empty catalog. A profile's ``binaries``
+list is the least-privilege control deciding which processes may reach its
+endpoints, and the examples name paths from a reference image layout, so copy
+the profile, point ``binaries`` at the client or interpreter in
+``gptme-eval:latest``, then import your copy (see the
+`provider profiles docs <https://docs.nvidia.com/openshell/latest/how-it-works/providers/profiles>`_).
+
+This requires a running OpenShell gateway plus Docker or Podman (see the
+`OpenShell support matrix <https://docs.nvidia.com/openshell/latest/about/support-matrix>`_).
+It is not the default eval path today.
+
+Available Eval Suites
+---------------------
+
+The evaluation suite is organized into named suites that can be run individually or together:
+
+**basic**
+  Fundamental tool use: reading and writing files, patching code, running Python in IPython,
+  executing shell commands, using git, counting words, transforming JSON, multi-file refactoring,
+  writing tests, generating CLI programs, and fixing bugs. (~18 tests)
+
+**browser**
+  Web browsing and data extraction using the browser tool.
+
+**init_projects**
+  Project initialization: ``init-git``, ``init-react``, ``init-rust``. Tests the ability
+  to scaffold new projects from scratch.
+
+**practical** — **practical2** — ... — **practical33**
+  A growing series of real-world programming tasks that go beyond basic file I/O.
+  The practical suites now cover 99 tasks across data processing, refactoring,
+  algorithms, async/concurrency, SQL, validation, graph search, dynamic
+  programming, tree data structures, and classic interview problems.
+
+  Early suites give a good feel for the format:
+
+  +------------+------------------------------------------+----------------------------------+
+  | Suite      | Description                              | Tests                            |
+  +============+==========================================+==================================+
+  | practical  | Web APIs, log parsing, error handling    | build-api, parse-log,            |
+  |            |                                          | add-error-handling               |
+  +------------+------------------------------------------+----------------------------------+
+  | practical2 | Data filtering, templating, CSV          | sort-and-filter, template-fill,  |
+  |            | validation                               | validate-csv                     |
+  +------------+------------------------------------------+----------------------------------+
+  | practical3 | Unit test writing, SQLite                | write-tests-calculator,          |
+  |            | persistence                              | sqlite-store                     |
+  +------------+------------------------------------------+----------------------------------+
+  | practical4 | Data aggregation, schedule overlap       | group-by, schedule-overlaps,     |
+  |            | detection, topological sort              | topo-sort                        |
+  +------------+------------------------------------------+----------------------------------+
+  | practical5 | Code refactoring, data pipelines,        | rename-function, data-pipeline,  |
+  |            | regex scrubbing                          | regex-scrub                      |
+  +------------+------------------------------------------+----------------------------------+
+  | practical6 | CSV analysis, word frequency             | csv-analysis, word-frequency,    |
+  |            | counting, config merging                 | merge-configs                    |
+  +------------+------------------------------------------+----------------------------------+
+  | practical7 | INI-to-JSON conversion, JSON diff,       | ini-to-json, json-diff,          |
+  |            | changelog generation                     | changelog-gen                    |
+  +------------+------------------------------------------+----------------------------------+
+
+  Later suites extend coverage with semver sorting, Roman numerals, matrix and
+  bracket tasks, async pipelines and worker queues, SQL analytics, tries,
+  LRU caches, interval merging, min-stack, knight moves, histogram area,
+  edit distance, BST operations, coin change, Dijkstra, spiral matrix,
+  number of islands, Kadane's algorithm, 0/1 knapsack, flood fill,
+  trapping rain water, word break, permutations, longest common subsequence,
+  stock trading with cooldown, image rotation, N-Queens, longest increasing
+  subsequence, cycle detection, sliding window maximum, decode ways,
+  meeting rooms, longest palindromic substring, jump game, task scheduler,
+  house robber, max product subarray, finding all anagrams, minimum path sum,
+  gas station, next permutation, word break II, unique paths, rotate array,
+  decode string, top-k frequent elements, partition equal subset sum,
+  3sum, majority element (Boyer-Moore voting), counting bits, combination sum,
+  generate parentheses, single number (XOR), product except self,
+  find duplicate (Floyd's cycle detection), and missing number.
+
+  For the current authoritative suite list, run ``gptme-eval --list``.
+
+Run specific tests or suites by name:
+
+.. code-block:: bash
+
+    gptme-eval build-api --model anthropic/claude-sonnet-4-6
+    gptme-eval sort-and-filter rename-function --model anthropic/claude-sonnet-4-6
+
+Run all practical suites at once (useful for benchmarking):
+
+.. code-block:: bash
+
+    gptme-eval all-practical --model anthropic/claude-sonnet-4-6
+
+    # Or run every suite (basic + browser + init_projects + practical):
+    gptme-eval all --model anthropic/claude-sonnet-4-6
+
+
+Raw Results
+-----------
+
+Full per-test results from all eval runs are stored as CSV files in ``eval_results/`` subdirectories.
+Results are published to the ``eval-results`` branch of the repository.
+
+To view raw results locally:
+
+.. code-block:: bash
+
+    # View latest results
+    cat eval_results/*/eval_results.csv | head -50
+
+    # Export leaderboard as CSV for analysis
+    gptme-eval --leaderboard --leaderboard-format csv
+
+    # Export as JSON for programmatic use
+    gptme-eval --leaderboard --leaderboard-format json
+
+
+Other evals
+-----------
+
+SWE-Bench support is now available via ``gptme-eval-swebench``.
+It can:
+
+- inspect datasets and instances with ``--info``
+- generate ``predictions.jsonl`` in the official SWE-Bench format
+- resume interrupted runs with ``--resume``
+- optionally invoke the official harness with ``--run-harness``
+
+Example single-instance smoke test:
+
+.. code-block:: bash
+
+    gptme-eval-swebench \
+        -m anthropic/claude-sonnet-4-6 \
+        -i django__django-11099
+
+Example full SWE-Bench Lite run:
+
+.. code-block:: bash
+
+    gptme-eval-swebench \
+        -m anthropic/claude-sonnet-4-6 \
+        --resume \
+        --run-harness \
+        --dataset princeton-nlp/SWE-bench_Lite \
+        --run-id gptme_baseline_2026
+
+Notes:
+
+- The built-in summary printed by ``gptme-eval-swebench`` is a lightweight file-coverage heuristic.
+  For authoritative pass/fail results and leaderboard submission, use the official SWE-Bench harness.
+
+- ``--run-harness`` requires Docker plus ``swebench[evaluation]`` dependencies.
+
+- Use ``gptme-eval-swebench --info`` to inspect dataset size and specific instance IDs before launching an expensive run.
+
+See also:
+
+- `PR #1994 <https://github.com/gptme/gptme/pull/1994>`_ — SWE-Bench harness integration
+- `PR #2045 <https://github.com/gptme/gptme/pull/2045>`_ — resume support for interrupted runs

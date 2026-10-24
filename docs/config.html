@@ -1,0 +1,1325 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configuration &#8212; gptme</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="_static/asciinema-player_3.12.1.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3a28e17f" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/asciinema-player_3.12.1.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'config';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://gptme.org/docs/config.html" />
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Models" href="models.html" />
+    <link rel="prev" title="Set Up Text-to-Speech" href="howto/tts-setup.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="auto">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="gptme - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="gptme - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="getting-started.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-dependencies.html">Extras and System Dependencies</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="demos.html">Demos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/choose-workflow.html">Choose a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/minimal-context.html">Minimal Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/edit-files.html">Edit Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/code-review.html">Review Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/debug-python.html">Debug Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/refactor.html">Refactor Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/automate-task.html">Automate Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/parallel-research.html">Parallel Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/computer-use.html">Computer Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/skills-workflows.html">Reusable Skills</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/custom-tool-plugin.html">Custom Tool Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/tts-setup.html">Text-to-Speech</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Using gptme</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="providers.html">Providers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="providers-supported.html">Supported Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers-custom.html">Custom and Local Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers-integration.html">Provider Integration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool-formats.html">Tool Formats</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/read.html">Read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/save.html">Save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/patch.html">Patch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/morph.html">Morph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/hashline-edit.html">Hashline Edit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/patch-many.html">Patch many</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/convert.html">Convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/gh.html">GitHub (gh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/precommit.html">Precommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/autocommit.html">Autocommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/browser.html">Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/rag.html">RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/chats.html">Chats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/vision.html">Vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/screenshot.html">Screenshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/computer.html">Computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/choice.html">Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/elicit.html">Elicit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/form.html">Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tmux.html">Tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/subagent.html">Subagent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/complete.html">Complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/restart.html">Restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/vent.html">Vent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/request-tool-change.html">Request Tool Change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/watch.html">Watch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/progress.html">Progress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/clarify.html">Clarify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/lessons.html">Lessons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/todo.html">Todo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/mcp.html">MCP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automation.html">Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cli.html">CLI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme.html">gptme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-server.html">gptme-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-tui.html">gptme-tui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-util.html">gptme-util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/agents.html">Agent Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/gptme-mcp-server.html">gptme-mcp-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/setup.html">Setup and Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/sessions.html">Sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli/evaluation.html">Evaluation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="tui.html">TUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app.html">App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acp.html">ACP</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="channels.html">Channels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bot.html">GitHub Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/email.html">Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/agent-messaging.html">Agent Messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/chat.html">Chat Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels/voice.html">Voice</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agents &amp; Context</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="agents.html">Agents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="agents/workspace.html">Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents/autonomous.html">Running autonomously</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="lessons.html">Lessons</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="skills.html">Skills</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="skills-gallery.html">Gallery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Memory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extending gptme</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugin System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_tool.html">Custom Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcp.html">MCP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pr-lifecycle.html">PR Lifecycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building Executables</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/core.html">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/llm.html">LLMs and Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/config.html">Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/plugins.html">Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/prompts.html">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/server.html">Server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="context-compression.html">Context Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evals.html">Evals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuning.html">Finetuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="design/index.html">Design Documents</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="design/hook-based-confirmations.html">Hook-Based Tool Confirmations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/elicitation.html">Generalized Elicitation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/ptc-tool-interface.html">Programmatic Tool Calling (PTC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/transcript-persistence.html">Transcript Persistence</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternatives.html">Alternatives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arewetiny.html">Are we tiny?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/acronyms.html">What does “gptme” stand for?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="changelog.html">Changelog</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.35.1.html">v0.35.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.35.0.html">v0.35.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.34.0.html">v0.34.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.33.0.html">v0.33.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.32.1.html">v0.32.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.32.0.html">v0.32.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.31.0.html">v0.31.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.30.0.html">v0.30.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.29.0.html">v0.29.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.3.html">v0.28.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.2.html">v0.28.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.1.html">v0.28.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.28.0.html">v0.28.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.27.0.html">v0.27.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.26.0.html">v0.26.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.25.0.html">v0.25.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.1.html">v0.24.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.24.0.html">v0.24.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.23.0.html">v0.23.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.22.0.html">v0.22.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.21.0.html">v0.21.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.20.0.html">v0.20.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.19.0.html">v0.19.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.18.0.html">v0.18.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.17.0.html">v0.17.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.16.0.html">v0.16.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.15.0.html">v0.15.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.14.0.html">v0.14.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.13.0.html">v0.13.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.12.0.html">v0.12.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.11.0.html">v0.11.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.5.html">v0.10.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.4.html">v0.10.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.3.html">v0.10.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.2.html">v0.10.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.1.html">v0.10.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.10.0.html">v0.10.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.4.html">v0.9.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.3.html">v0.9.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.2.html">v0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.1.html">v0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.9.0.html">v0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.1.html">v0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.8.0.html">v0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.7.0.html">v0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.1.html">v0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.6.0.html">v0.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.5.0.html">v0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.2.html">v0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.1.html">v0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.4.0.html">v0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.3.html">v0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.2.html">v0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.1.html">v0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.3.0.html">v0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.2.html">v0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.2.1.html">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.1.html">v0.1.1</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/gptme/gptme">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://discord.gg/NMaCmmkxWv">Discord</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://x.com/gptmeorg">X</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gptme/gptme/edit/master/docs/config.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/config.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Configuration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-config">Global config</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tui-status-line">TUI status line</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-model-selection-works">How model selection works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-overrides-config-local-toml">Local overrides (<code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-defaults-and-prompt-fragments">Runtime defaults and prompt fragments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-config">Project config</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-overrides-gptme-local-toml">Local overrides (<code class="docutils literal notranslate"><span class="pre">gptme.local.toml</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-instruction-files-agents-md">Agent instruction files (<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chat-config">Chat config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-variables">Environment Variables</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-conversation-context">Cross-Conversation Context</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h1>
+<p>gptme has three configuration files:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#global-config"><span class="std std-ref">global configuration</span></a></p></li>
+<li><p><a class="reference internal" href="#project-config"><span class="std std-ref">project configuration</span></a></p></li>
+<li><p><a class="reference internal" href="#chat-config"><span class="std std-ref">chat configuration</span></a></p></li>
+</ul>
+<p>It also supports <a class="reference internal" href="#environment-variables"><span class="std std-ref">Environment Variables</span></a> for configuration, which take precedence over the configuration files.</p>
+<p>The CLI also supports a variety of options that can be used to override both configuration values.</p>
+<section id="global-config">
+<span id="id1"></span><h2>Global config<a class="headerlink" href="#global-config" title="Link to this heading">#</a></h2>
+<p>The file is located at <code class="docutils literal notranslate"><span class="pre">~/.config/gptme/config.toml</span></code>.</p>
+<p>Here is an example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[user]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Erik"</span>
+<span class="n">about</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"I am a curious human programmer."</span>
+<span class="n">response_preference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Basic concepts don't need to be explained."</span>
+<span class="n">avatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"~/Pictures/avatar.jpg"</span><span class="w">  </span><span class="c1"># Path to avatar image (or URL)</span>
+<span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"magenta"</span><span class="w">  </span><span class="c1"># Color for your name in the CLI and TUI</span>
+
+<span class="k">[prompt]</span>
+<span class="c1"># Additional files to always include in context</span>
+<span class="n">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"~/notes/llm-tips.md"</span><span class="p">]</span>
+
+<span class="c1"># Project descriptions (optional)</span>
+<span class="c1">#[prompt.project]</span>
+<span class="c1">#myproject = "A description of my project."</span>
+
+<span class="k">[[hooks.scripts]]</span>
+<span class="c1"># Global hooks run in every project. Higher priorities run first.</span>
+<span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"session.end"</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"~/bin/save-agent-context"</span>
+<span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span>
+<span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+
+<span class="k">[env]</span>
+<span class="c1"># Uncomment to use Claude Sonnet 4.6 by default</span>
+<span class="c1">#MODEL = "anthropic/claude-sonnet-4-6"</span>
+
+<span class="c1"># One of these need to be set</span>
+<span class="c1"># If none of them are, they will be prompted for on first start</span>
+<span class="n">OPENAI_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+<span class="n">ANTHROPIC_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+<span class="n">OPENROUTER_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+<span class="n">XAI_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+<span class="n">GEMINI_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+<span class="n">GROQ_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+<span class="n">DEEPSEEK_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+
+<span class="c1"># Uncomment to use with Ollama</span>
+<span class="c1">#MODEL = "local/&lt;model-name&gt;"</span>
+<span class="c1">#OPENAI_BASE_URL = "http://localhost:11434/v1"</span>
+
+<span class="c1"># Uncomment to change tool configuration</span>
+<span class="c1">#TOOL_FORMAT = "markdown" # Select the tool format. One of `markdown`, `xml`, `tool` (see docs: Tool Formats)</span>
+<span class="c1">#TOOL_ALLOWLIST = "save,append,patch,ipython,shell,browser"  # Comma separated list of allowed tools</span>
+<span class="c1">#TOOL_MODULES = "gptme.tools,custom.tools" # List of python comma separated python module path</span>
+
+<span class="k">[models]</span>
+<span class="c1"># Optional: set a default model (formal alternative to the MODEL env var)</span>
+<span class="c1">#default = "anthropic/claude-sonnet-4-6"</span>
+<span class="c1"># Optional: curate favorites shown prominently in model pickers (e.g. web UI)</span>
+<span class="c1">#favorites = ["anthropic/claude-sonnet-4-6", "openai/gpt-4o", "openrouter/google/gemini-2.0-flash"]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">user</span></code> section configures user identity:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Your display name, shown at the CLI input prompt and as a tooltip on avatar in the web UI (default: <code class="docutils literal notranslate"><span class="pre">&quot;User&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">about</span></code>: A description of yourself, included in the system prompt so the assistant knows who it’s talking to (default: <code class="docutils literal notranslate"><span class="pre">&quot;I</span> <span class="pre">am</span> <span class="pre">a</span> <span class="pre">curious</span> <span class="pre">human</span> <span class="pre">programmer.&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">response_preference</span></code>: Preferences for how the assistant should respond (e.g. level of detail, default: <code class="docutils literal notranslate"><span class="pre">&quot;Basic</span> <span class="pre">concepts</span> <span class="pre">don't</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">explained.&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">avatar</span></code>: Path to your avatar image (supports <code class="docutils literal notranslate"><span class="pre">~</span></code> expansion) or URL. Displayed in the web UI next to your messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: Color for your name in the CLI and TUI: hex (<code class="docutils literal notranslate"><span class="pre">&quot;#e5a50a&quot;</span></code>), <code class="docutils literal notranslate"><span class="pre">&quot;rgb(229,165,10)&quot;</span></code>, or a color name (Rich names like <code class="docutils literal notranslate"><span class="pre">&quot;hot_pink&quot;</span></code>; CSS names like <code class="docutils literal notranslate"><span class="pre">&quot;pink&quot;</span></code> with the TUI installed). An invalid value is ignored with a warning (default: green).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For backward compatibility, <code class="docutils literal notranslate"><span class="pre">about_user</span></code> and <code class="docutils literal notranslate"><span class="pre">response_preference</span></code> under the <code class="docutils literal notranslate"><span class="pre">[prompt]</span></code> section are still supported as fallbacks if not set in <code class="docutils literal notranslate"><span class="pre">[user]</span></code>.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">prompt</span></code> section contains options included in both interactive and non-interactive runs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">files</span></code>: A list of additional files to always include in context. Supports absolute paths, <code class="docutils literal notranslate"><span class="pre">~</span></code> expansion, and paths relative to the config directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">project</span></code>: A table of project descriptions, keyed by project name, included when working in the matching Git repository. The default config includes descriptions for <code class="docutils literal notranslate"><span class="pre">activitywatch</span></code> and <code class="docutils literal notranslate"><span class="pre">gptme</span></code> — when the git root directory name matches one of these keys, the description is automatically injected into the system prompt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fragments</span></code>: A table of named, additive system-prompt text, described in
+<a class="reference internal" href="#global-config-runtime"><span class="std std-ref">Runtime defaults and prompt fragments</span></a>. These sections do not replace user preferences,
+workspace files, profiles, or a conversation’s custom system prompt.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">env</span></code> section contains environment variables that gptme will fall back to if they are not set in the shell environment. This is useful for setting the default model and API keys for <a class="reference internal" href="providers.html"><span class="doc">Providers</span></a>. It can also be used to set default tool configuration options, see <a class="reference internal" href="custom_tool.html"><span class="doc">Custom Tools</span></a> for more information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>API keys and other secrets belong in <a class="reference internal" href="#global-config-local"><span class="std std-ref">config.local.toml</span></a>, not in
+<code class="docutils literal notranslate"><span class="pre">config.toml</span></code>. That lets you keep <code class="docutils literal notranslate"><span class="pre">config.toml</span></code> in dotfiles or version control without
+exposing your keys. The webui setup wizard already writes keys to <code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code>.</p>
+</div>
+<section id="tui-status-line">
+<span id="tui-statusline"></span><h3>TUI status line<a class="headerlink" href="#tui-status-line" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">[tui]</span> <span class="pre">statusline</span></code> sets a command that renders the TUI status bar:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[tui]</span>
+<span class="n">statusline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"python3 ~/.config/gptme/statusline.py"</span>
+</pre></div>
+</div>
+<p>The command gets a JSON object on stdin and prints the status line: one or
+more lines, ANSI colors allowed. It runs when the status changes (and every
+10 seconds), in the workspace directory, and must finish within 2 seconds;
+if it fails or prints nothing, the built-in status is shown. Fields use the
+names of Claude Code’s statusline input where they map, so one script can
+serve both:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model.display_name</span></code>, <code class="docutils literal notranslate"><span class="pre">cwd</span></code>, <code class="docutils literal notranslate"><span class="pre">workspace.current_dir</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">context_window</span></code>: <code class="docutils literal notranslate"><span class="pre">used_percentage</span></code>, <code class="docutils literal notranslate"><span class="pre">context_window_size</span></code>,
+<code class="docutils literal notranslate"><span class="pre">current_usage.input_tokens</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cost</span></code>: <code class="docutils literal notranslate"><span class="pre">total_cost_usd</span></code>, <code class="docutils literal notranslate"><span class="pre">total_duration_ms</span></code> (since the TUI started)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> and <code class="docutils literal notranslate"><span class="pre">session_name</span></code>: the conversation name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gptme</span></code>: <code class="docutils literal notranslate"><span class="pre">state</span></code> (<code class="docutils literal notranslate"><span class="pre">idle</span></code>, <code class="docutils literal notranslate"><span class="pre">generating</span></code>, <code class="docutils literal notranslate"><span class="pre">executing</span> <span class="pre">tools</span></code>, …),
+<code class="docutils literal notranslate"><span class="pre">queued</span></code>, <code class="docutils literal notranslate"><span class="pre">turns</span></code>, <code class="docutils literal notranslate"><span class="pre">steps</span></code>, <code class="docutils literal notranslate"><span class="pre">tools</span></code> (calls per tool) and <code class="docutils literal notranslate"><span class="pre">logdir</span></code></p></li>
+</ul>
+</section>
+<section id="how-model-selection-works">
+<span id="id2"></span><h3>How model selection works<a class="headerlink" href="#how-model-selection-works" title="Link to this heading">#</a></h3>
+<p>When you start gptme, the model is resolved in this priority order. The layers
+run from most specific (this one command) to most general (your global config):</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--model</span></code> / <code class="docutils literal notranslate"><span class="pre">-m</span></code> CLI flag (highest priority, per-session)</p></li>
+<li><p>Per-chat model saved with <code class="docutils literal notranslate"><span class="pre">/model</span></code> — persists across session resumes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODEL</span></code> / <code class="docutils literal notranslate"><span class="pre">GPTME_MODEL</span></code> env var set in your shell</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[env].MODEL</span></code> in the chat’s own config</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[env].MODEL</span></code> in the project’s <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[models].default</span></code> in your global config</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[env].MODEL</span></code> in your global config</p></li>
+<li><p>Auto-detection based on which API keys are configured</p></li>
+</ol>
+<p>So a variable exported for one command, or a model pinned by a project’s
+<code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code>, wins over the global default — while <code class="docutils literal notranslate"><span class="pre">[models].default</span></code> still
+wins over <code class="docutils literal notranslate"><span class="pre">[env].MODEL</span></code> set in that <em>same</em> global config.</p>
+<p><strong>Setting a permanent default model:</strong></p>
+<p>The recommended approach is to use <code class="docutils literal notranslate"><span class="pre">[models].default</span></code> in your config:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[models]</span>
+<span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"anthropic/claude-sonnet-4-6"</span>
+</pre></div>
+</div>
+<p>Alternatively, set <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> once in the <code class="docutils literal notranslate"><span class="pre">[env]</span></code> section — but do <strong>not</strong> add it twice, since TOML does not allow duplicate keys within the same table.</p>
+<p><strong>Auto-detection when no model is set:</strong></p>
+<p>If no model is configured, gptme will scan your API keys and pick the first available provider in this order:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Provider prefix</p></th>
+<th class="head"><p>API key env var</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">openai</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">anthropic</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ANTHROPIC_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">openrouter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OPENROUTER_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gemini</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GEMINI_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">groq</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xai</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XAI_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">deepseek</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DEEPSEEK_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">moonshot</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MOONSHOT_API_KEY</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">azure</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AZURE_OPENAI_API_KEY</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So if you have both <code class="docutils literal notranslate"><span class="pre">ANTHROPIC_API_KEY</span></code> and <code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code> set, gptme will
+use Anthropic (earlier in the list) unless you override with <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> or <code class="docutils literal notranslate"><span class="pre">--model</span></code>.
+See <a class="reference internal" href="providers.html"><span class="doc">Providers</span></a> for the full list and <a class="reference internal" href="models.html"><span class="doc">Models</span></a> for model recommendations.</p>
+<p><strong>Using multiple providers:</strong></p>
+<p>You can set API keys for as many providers as you like. Use <code class="docutils literal notranslate"><span class="pre">--model</span></code> on the
+command line to select a specific model for a session, or set <code class="docutils literal notranslate"><span class="pre">[models].default</span></code>
+in your config to change the permanent default:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use Groq for a specific session, regardless of default</span>
+gptme<span class="w"> </span><span class="s2">"explain this"</span><span class="w"> </span>-m<span class="w"> </span>groq/llama-3.3-70b-versatile
+
+<span class="c1"># Use OpenRouter's model picker syntax</span>
+gptme<span class="w"> </span><span class="s2">"hello"</span><span class="w"> </span>-m<span class="w"> </span>openrouter/google/gemini-2.5-flash
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;provider&gt;/&lt;model-name&gt;</span></code> prefix determines which API key is used —
+<code class="docutils literal notranslate"><span class="pre">anthropic/...</span></code> uses <code class="docutils literal notranslate"><span class="pre">ANTHROPIC_API_KEY</span></code>, <code class="docutils literal notranslate"><span class="pre">groq/...</span></code> uses <code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code>, etc.</p>
+<p><strong>Using local models (Ollama, llama-cpp-python, etc.):</strong></p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> to <code class="docutils literal notranslate"><span class="pre">local/&lt;model-name&gt;</span></code> and point <code class="docutils literal notranslate"><span class="pre">OPENAI_BASE_URL</span></code> at your
+local server. The <code class="docutils literal notranslate"><span class="pre">OPENAI_BASE_URL</span></code> setting <strong>only applies</strong> to models with
+the <code class="docutils literal notranslate"><span class="pre">local/</span></code> prefix — it does not affect OpenAI, Anthropic, or other providers:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[env]</span>
+<span class="n">MODEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"local/llama3.2:3b"</span>
+<span class="n">OPENAI_BASE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"http://localhost:11434/v1"</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">models</span></code> section configures model selection preferences:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">default</span></code>: The default chat model, as a fully-qualified model ID (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;anthropic/claude-sonnet-4-6&quot;</span></code>). A formal alternative to <code class="docutils literal notranslate"><span class="pre">[env].MODEL</span></code> in the same config file, which it takes precedence over. It is overridden by anything more specific: the <code class="docutils literal notranslate"><span class="pre">--model</span></code> CLI flag, a per-chat model, a <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> env var in your shell, or <code class="docutils literal notranslate"><span class="pre">[env].MODEL</span></code> in a project’s <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code>. See <a class="reference internal" href="#how-model-selection-works"><span class="std std-ref">How model selection works</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">favorites</span></code>: A list of fully-qualified model IDs (e.g. <code class="docutils literal notranslate"><span class="pre">[&quot;anthropic/claude-sonnet-4-6&quot;,</span> <span class="pre">&quot;openai/gpt-4o&quot;]</span></code>) curated by the user. These are surfaced prominently in model pickers such as the web UI model selector.</p></li>
+</ul>
+<p>If you want to configure MCP servers, you can do so in a <code class="docutils literal notranslate"><span class="pre">mcp</span></code> section. See <a class="reference internal" href="mcp.html#mcp"><span class="std std-ref">MCP</span></a> for more information.</p>
+<p>See <a class="reference internal" href="api/config.html#gptme.config.UserConfig" title="gptme.config.UserConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">gptme.config.UserConfig</span></code></a> for the API reference.</p>
+</section>
+<section id="local-overrides-config-local-toml">
+<span id="global-config-local"></span><h3>Local overrides (<code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code>)<a class="headerlink" href="#local-overrides-config-local-toml" title="Link to this heading">#</a></h3>
+<p>You can create a <code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code> in the same directory (<code class="docutils literal notranslate"><span class="pre">~/.config/gptme/</span></code>) to override or extend values from <code class="docutils literal notranslate"><span class="pre">config.toml</span></code>. This is useful for keeping secrets (API keys, MCP server credentials) separate from preferences you might commit to your dotfiles.</p>
+<p>Example <code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code>:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[env]</span>
+<span class="n">OPENAI_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sk-..."</span>
+<span class="n">ANTHROPIC_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sk-ant-..."</span>
+
+<span class="c1"># Add secret env vars to an MCP server defined in config.toml</span>
+<span class="k">[[mcp.servers]]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-server"</span>
+<span class="n">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">API_KEY</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">"secret-key"</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Values in <code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code> are merged into the main config: dictionary sections are merged recursively, and MCP servers are merged by name (so you can define the server command/args in <code class="docutils literal notranslate"><span class="pre">config.toml</span></code> and add secrets in <code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code>). Scalar values in the local file override the main file.</p>
+</section>
+<section id="runtime-defaults-and-prompt-fragments">
+<span id="global-config-runtime"></span><h3>Runtime defaults and prompt fragments<a class="headerlink" href="#runtime-defaults-and-prompt-fragments" title="Link to this heading">#</a></h3>
+<p>Deployments can provide an optional <code class="docutils literal notranslate"><span class="pre">config.runtime.toml</span></code> alongside the main
+and local files. This is a generic operator-owned defaults layer, not a
+cloud-specific switch or an enforcement policy. File precedence, lowest to
+highest, is:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config.runtime.toml</span></code> (deployment defaults)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.toml</span></code> (user preferences)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code> (user’s local overrides/secrets)</p></li>
+</ol>
+<p>While the runtime file is present, built-in defaults form a lower-priority,
+in-memory baseline. A preview-only runtime file therefore retains the standard
+user guidance and project descriptions. Explicit values, including empty strings
+and lists, still override defaults; legacy <code class="docutils literal notranslate"><span class="pre">[prompt]</span></code> user preferences retain
+their existing fallback behavior.</p>
+<p>Existing process-environment, project, chat, and CLI resolution rules are
+unchanged. Dictionaries merge recursively; MCP servers and providers merge by
+name. Other lists and scalar values are replaced by the higher-priority layer,
+not concatenated. In particular, do not use deployment <code class="docutils literal notranslate"><span class="pre">prompt.files</span></code> to append
+to a user’s file list.</p>
+<p>For additive instructions, use named fragments instead:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># config.runtime.toml, written by the deployment</span>
+<span class="k">[prompt.fragments]</span>
+<span class="n">deployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"This environment provides an authenticated app preview."</span>
+</pre></div>
+</div>
+<p>Other keys in the user’s <code class="docutils literal notranslate"><span class="pre">[prompt.fragments]</span></code> coexist with that fragment.
+To override or disable just the deployment fragment, set the same key in
+<code class="docutils literal notranslate"><span class="pre">config.toml</span></code> or <code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code>:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[prompt.fragments]</span>
+<span class="n">deployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w">  </span><span class="c1"># Disable this fragment, without changing the runtime file</span>
+<span class="n">personal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Keep explanations concise."</span>
+</pre></div>
+</div>
+<p>Fragment values must be strings; names must match
+<code class="docutils literal notranslate"><span class="pre">[A-Za-z0-9][A-Za-z0-9_.-]*</span></code>. Nonblank fragments become
+named <code class="docutils literal notranslate"><span class="pre">prompt_fragment:&lt;name&gt;</span></code> sections, sorted by name, before dynamic context
+and the cache boundary. They participate in prompt statistics and the same
+generation/pinning mechanism as other system instructions. They work with full,
+short, custom, and selective prompts without depending on a workspace or tools.
+<code class="docutils literal notranslate"><span class="pre">include_user_context=False</span></code> and <code class="docutils literal notranslate"><span class="pre">prompt=&quot;none&quot;</span></code> suppress these optional
+fragments.</p>
+<p>These global fragments apply to all prompt-builder callers in the configured
+environment, including CLI and server conversations. Interface-specific text
+should describe its prerequisites rather than assume every caller is the webui.
+An absent runtime file and empty fragment mapping leave ordinary local
+installations unchanged. See <a class="reference internal" href="server.html#server-preview-guidance"><span class="std std-ref">Teaching agents about app previews</span></a> for an app-preview
+example using the existing webui panel protocol.</p>
+<p>gptme never creates, edits, or removes the runtime file and never copies its
+contents into user configuration or <code class="docutils literal notranslate"><span class="pre">ChatConfig.system_prompt</span></code>. An invalid or
+unreadable runtime file reports an error rather than silently disabling its
+defaults. If the main file is absent while runtime defaults are present, gptme
+creates an empty main file, so generated user settings do not override deployment
+defaults. This does not persist built-in defaults into that file either. Removing
+the runtime file restores ordinary no-runtime loading: an existing sparse main
+file uses dataclass fallbacks (for example no user description or project
+descriptions), whereas a missing main file is initialized normally. Preferences
+that should survive removal of deployment configuration belong in the user’s
+main/local files.</p>
+<p>The deployment should atomically replace only its runtime file on
+startup; do not append repeatedly or rewrite the user’s main/local files.
+The config UI reports the defaults file separately while continuing to edit
+the main file; existing secret writes still target the local file.</p>
+<p>The runtime layer is read on configuration load/reload. Updated fragments affect
+new prompts and existing regeneration paths (for example conversation settings
+changes and model/tool changes). CLI <code class="docutils literal notranslate"><span class="pre">/model</span></code> and <code class="docutils literal notranslate"><span class="pre">/tools</span> <span class="pre">load</span></code> re-read user
+configuration before regenerating, preserving the active chat/project settings
+and loaded tools. Atomically replaced, removed, or disabled fragments therefore
+take effect without restarting the CLI. There is no file watcher or historical-log
+migration. Restarting the server alone does not rewrite a resumed conversation’s
+stored messages. Removing the runtime fragment is not immediate revocation of
+instructions already in a conversation.</p>
+</section>
+</section>
+<section id="project-config">
+<span id="id3"></span><h2>Project config<a class="headerlink" href="#project-config" title="Link to this heading">#</a></h2>
+<p>The project configuration file is intended to let the user configure how gptme works within a particular project/workspace.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The project configuration file is a very early feature and is likely to change/break in the future.</p>
+</div>
+<p>gptme will look for a <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code> file in the workspace root (this is the working directory if not overridden by the <code class="docutils literal notranslate"><span class="pre">--workspace</span></code> option). This file contains project-specific configuration options.</p>
+<p>Example <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code>:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"README.md"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Makefile"</span><span class="p">]</span>
+<span class="n">prompt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"This is gptme."</span>
+</pre></div>
+</div>
+<p>This file currently supports a few options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">files</span></code>, a list of paths that gptme will always include in the context. If no <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code> is present or if the <code class="docutils literal notranslate"><span class="pre">files</span></code> option is unset, gptme will automatically look for common project files, such as: <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">package.json</span></code>, <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, <code class="docutils literal notranslate"><span class="pre">.cursor/rules/**.mdc</span></code>, <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code>, <code class="docutils literal notranslate"><span class="pre">GEMINI.md</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prompt</span></code>, a string that will be included in the system prompt with a <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Current</span> <span class="pre">Project</span></code> header.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exclude</span></code>, a list of glob patterns for files to drop from the context file list. Each pattern is matched against both the file name and its path relative to the workspace, and applies to context files from <code class="docutils literal notranslate"><span class="pre">files</span></code>, auto-detected project files, and user-configured files. <a class="reference internal" href="#agent-instruction-files"><span class="std std-ref">Agent instruction files</span></a> such as <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> are loaded separately and are not filtered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">system</span></code>, the system prompt variant: <code class="docutils literal notranslate"><span class="pre">&quot;full&quot;</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">&quot;short&quot;</span></code> (a compact prompt with roughly 60% fewer tokens). An explicitly passed <code class="docutils literal notranslate"><span class="pre">--system</span></code> CLI flag takes precedence.</p>
+<p><code class="docutils literal notranslate"><span class="pre">exclude</span></code> and <code class="docutils literal notranslate"><span class="pre">system</span></code> are only read from the <code class="docutils literal notranslate"><span class="pre">[prompt]</span></code> table form of the
+config. That form nests <em>all</em> prompt options instead of placing them at the top
+level, and the two forms are mutually exclusive: when a <code class="docutils literal notranslate"><span class="pre">[prompt]</span></code> table is
+present, <code class="docutils literal notranslate"><span class="pre">files</span></code>, <code class="docutils literal notranslate"><span class="pre">prompt</span></code>, <code class="docutils literal notranslate"><span class="pre">base_prompt</span></code>, and <code class="docutils literal notranslate"><span class="pre">context_cmd</span></code> must be
+nested inside it too. A top-level <code class="docutils literal notranslate"><span class="pre">files</span></code> alongside a <code class="docutils literal notranslate"><span class="pre">[prompt]</span></code> table is
+ignored with an “Unknown keys” warning.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[prompt]</span>
+<span class="n">prompt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"This is gptme."</span>
+<span class="n">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"README.md"</span><span class="p">,</span><span class="w"> </span><span class="s2">"docs/**/*.rst"</span><span class="p">]</span>
+<span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"CHANGELOG.md"</span><span class="p">,</span><span class="w"> </span><span class="s2">"docs/releases/*"</span><span class="p">]</span>
+<span class="n">system</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"short"</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_prompt</span></code>, a string that will be used as the base prompt for the project. This will override the global base prompt (“You are gptme v{__version__}, a general-purpose AI assistant powered by LLMs. […]”). It can be useful to change the identity of the assistant and override some default behaviors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">context_cmd</span></code>, a command used to generate context to include when constructing the system prompt. The command will be run in the workspace root and should output a string that will be included in the system prompt. Examples can be <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span> <span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">scripts/context.sh</span></code>. For new conversations where the first user message is known at context-construction time, it is available in the <code class="docutils literal notranslate"><span class="pre">GPTME_PROMPT_INITIAL</span></code> environment variable, enabling query-dependent retrieval without interpolating untrusted prompt text into the shell command. The variable is unset when no initial prompt exists or when it exceeds the safe process-environment size. For example, <code class="docutils literal notranslate"><span class="pre">context_cmd</span> <span class="pre">=</span> <span class="pre">'my-retriever</span> <span class="pre">--query-env</span> <span class="pre">GPTME_PROMPT_INITIAL'</span></code> lets a retriever read the query directly from its process environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hooks.scripts</span></code>, a list of bounded shell commands attached to lifecycle events.
+The same entries are supported in global and project configuration; both lists
+are additive. Hooks run in descending <code class="docutils literal notranslate"><span class="pre">priority</span></code> order (default <code class="docutils literal notranslate"><span class="pre">0</span></code>). At
+equal priority, global hooks run before project hooks and declaration order is
+preserved within each list. Script hooks run synchronously so a promised side
+effect completes before the
+lifecycle event returns. The initial event allowlist is <code class="docutils literal notranslate"><span class="pre">session.start</span></code> and
+<code class="docutils literal notranslate"><span class="pre">session.end</span></code>; events with structured inputs or control-flow results are not
+exposed through this shell adapter. Example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[[hooks.scripts]]</span>
+<span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"session.end"</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"scripts/save-context.sh"</span>
+<span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span>
+<span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+</pre></div>
+</div>
+<p>Commands run in the workspace with <code class="docutils literal notranslate"><span class="pre">GPTME_HOOK_EVENT</span></code>, <code class="docutils literal notranslate"><span class="pre">GPTME_LOGDIR</span></code>,
+<code class="docutils literal notranslate"><span class="pre">GPTME_WORKSPACE</span></code>, and the current <code class="docutils literal notranslate"><span class="pre">GPTME_MODEL</span></code> in their environment.
+A failure or timeout is logged and does not alter the session result.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">context_cmd</span></code> and project <code class="docutils literal notranslate"><span class="pre">hooks.scripts</span></code> commands are executed with shell
+interpretation. Review <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code> before running gptme in untrusted
+repositories. See <a class="reference internal" href="security.html"><span class="doc">Security</span></a> for details.</p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rag</span></code>, a dictionary to configure the RAG tool. See <a class="reference internal" href="tools/rag.html#rag"><span class="std std-ref">RAG</span></a> for more information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plugins</span></code>, a dictionary to configure plugins for this project. See <a class="reference internal" href="plugins.html"><span class="doc">Plugin System</span></a> for more information. Example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[plugins]</span>
+<span class="n">paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"./plugins"</span><span class="p">,</span><span class="w"> </span><span class="s2">"~/.config/gptme/plugins"</span><span class="p">]</span>
+<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"my_project_plugin"</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">agent</span></code>, a dictionary for agent-specific settings. This is primarily used by autonomous agents like gptme-bob. Example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[agent]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Bob"</span>
+<span class="n">avatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"assets/avatar.png"</span><span class="w">  </span><span class="c1"># Path to avatar image (relative to workspace)</span>
+<span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#e5a50a"</span><span class="w">  </span><span class="c1"># Color for the agent's name in the CLI and TUI</span>
+</pre></div>
+</div>
+<p>Options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: The agent’s name, used in system prompts and identification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">avatar</span></code>: Path to an avatar image (relative to workspace) or URL. Used by gptme-webui, gptme-server, and multi-agent UIs to display the agent’s profile picture.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: Color for the agent’s name (and message border in the TUI): hex, <code class="docutils literal notranslate"><span class="pre">&quot;rgb(r,g,b)&quot;</span></code>, or a color name (Rich or, with the TUI installed, CSS). <code class="docutils literal notranslate"><span class="pre">GPTME_AGENT_COLOR</span></code> overrides it. An invalid value is ignored with a warning.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">env</span></code>, a dictionary of environment variables to set for this project. These take precedence over global config but are overridden by shell environment variables.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mcp</span></code>, MCP server configuration for this project. See <a class="reference internal" href="mcp.html#mcp"><span class="std std-ref">MCP</span></a> for more information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lessons</span></code>, extra lesson directories for this project. Relative paths are resolved against the directory gptme is started from (normally the workspace root). <code class="docutils literal notranslate"><span class="pre">~</span></code> is not expanded here, and missing directories are skipped silently. See <a class="reference internal" href="lessons.html"><span class="doc">Lessons</span></a> for the lesson format. Example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[lessons]</span>
+<span class="n">dirs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"lessons"</span><span class="p">,</span><span class="w"> </span><span class="s2">"/opt/shared-lessons"</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subagent</span></code>, subagent execution settings. <code class="docutils literal notranslate"><span class="pre">max_concurrent</span></code> caps how many subagents run at once; excess subagents queue until a slot frees up. Resolution order: the <code class="docutils literal notranslate"><span class="pre">GPTME_SUBAGENT_MAX_CONCURRENT</span></code> environment variable, then this setting, then <code class="docutils literal notranslate"><span class="pre">min(8,</span> <span class="pre">cpu_count)</span></code>. Example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[subagent]</span>
+<span class="n">max_concurrent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">context</span></code>, context management settings. <code class="docutils literal notranslate"><span class="pre">budget</span></code> sets when compaction triggers, as a fraction of the model context window (<code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>) or an absolute token count; see <a class="reference internal" href="context-compression.html"><span class="doc">Context Compression</span></a> for how it layers with the CLI flag, environment variable, and per-model config. <code class="docutils literal notranslate"><span class="pre">enabled</span></code> turns on fresh context mode (default <code class="docutils literal notranslate"><span class="pre">false</span></code>; it replaces <code class="docutils literal notranslate"><span class="pre">GPTME_FRESH</span></code>, and takes precedence over it whenever a project config is present), <code class="docutils literal notranslate"><span class="pre">[context.selector]</span></code> tunes how relevant files are selected, and <code class="docutils literal notranslate"><span class="pre">scout_model</span></code> names a cheap model that picks relevant files before each user turn (unset disables the pre-pass). Example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[context]</span>
+<span class="n">budget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.85</span>
+<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="n">scout_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"openai/gpt-4.1-mini"</span>
+
+<span class="k">[context.selector]</span>
+<span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hybrid"</span><span class="w">  </span><span class="c1"># "rule", "llm" or "hybrid"</span>
+<span class="n">max_candidates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="n">max_selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plugin</span></code>, per-plugin configuration under <code class="docutils literal notranslate"><span class="pre">[plugin.&lt;name&gt;]</span></code> tables. gptme passes these through without validation; each plugin reads its own table from <code class="docutils literal notranslate"><span class="pre">config.project.plugin</span></code> (and <code class="docutils literal notranslate"><span class="pre">config.user.plugin</span></code> for the global config). Example:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[plugin.my_project_plugin]</span>
+<span class="n">api_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"http://localhost:8080"</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>See <a class="reference internal" href="api/config.html#gptme.config.ProjectConfig" title="gptme.config.ProjectConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">gptme.config.ProjectConfig</span></code></a> for the API reference.</p>
+<section id="local-overrides-gptme-local-toml">
+<span id="project-config-local"></span><h3>Local overrides (<code class="docutils literal notranslate"><span class="pre">gptme.local.toml</span></code>)<a class="headerlink" href="#local-overrides-gptme-local-toml" title="Link to this heading">#</a></h3>
+<p>You can create a <code class="docutils literal notranslate"><span class="pre">gptme.local.toml</span></code> file next to <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code> to override or extend the project config with values you don’t want to commit to version control (e.g. secrets for MCP servers, personal env vars).</p>
+<p>The merging behavior is the same as for the <a class="reference internal" href="#global-config-local"><span class="std std-ref">global local config</span></a>: dictionaries merge recursively, MCP servers merge by name, and scalar values in the local file override the main file.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">gptme.local.toml</span></code> to your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> to keep secrets out of version control.</p>
+</div>
+</section>
+<section id="agent-instruction-files-agents-md">
+<span id="agent-instruction-files"></span><h3>Agent instruction files (<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>)<a class="headerlink" href="#agent-instruction-files-agents-md" title="Link to this heading">#</a></h3>
+<p>At startup, gptme loads agent instruction files (<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code>,
+<code class="docutils literal notranslate"><span class="pre">COPILOT.md</span></code>, <code class="docutils literal notranslate"><span class="pre">GEMINI.md</span></code>, <code class="docutils literal notranslate"><span class="pre">.github/copilot-instructions.md</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.cursorrules</span></code>, <code class="docutils literal notranslate"><span class="pre">.windsurfrules</span></code>) from <code class="docutils literal notranslate"><span class="pre">~/.config/gptme/</span></code> and from every
+directory between your home directory and the workspace, most general first.</p>
+<p>During a session, instructions follow you: when the working directory changes
+(for example after a <code class="docutils literal notranslate"><span class="pre">cd</span></code> in the shell tool), or a file tool reads or writes a
+path in another directory, gptme loads any instruction files for that directory
+that are not in context yet. This way a subdirectory or another project’s own
+rules apply when the assistant works there. Each load adds a short visible line
+naming the file, such as <code class="docutils literal notranslate"><span class="pre">Loaded</span> <span class="pre">agent</span> <span class="pre">instructions</span> <span class="pre">from</span> <span class="pre">~/proj/AGENTS.md</span></code>.</p>
+<p>There is one exception. Instruction files inside a different
+<a class="reference internal" href="agents.html"><span class="doc">agent</span></a> workspace are never loaded mid-session. An agent workspace
+is a directory whose <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code> has an <code class="docutils literal notranslate"><span class="pre">[agent]</span></code> section, and its
+<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> usually defines that agent’s identity. Loading it because of a
+<code class="docutils literal notranslate"><span class="pre">cd</span></code> would hand the session another agent’s persona and rules. Instead, gptme
+adds a short notice, once per workspace:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Entered ~/alice, which is agent workspace 'Alice'; its instructions were not
+loaded (it defines a different agent identity than this session's 'Bob'). ...
+</pre></div>
+</div>
+<p>The rule:</p>
+<ul class="simple">
+<li><p>A workspace belongs to the session when it is the session workspace, the
+session’s agent workspace, a parent directory of either, or declares the
+same agent name (for example a worktree or clone of the same agent).</p></li>
+<li><p>Any other agent workspace is foreign, including every agent workspace when
+the session itself is not an agent. Files anywhere inside a foreign workspace,
+including nested projects, are skipped.</p></li>
+<li><p>Directories without an agent <code class="docutils literal notranslate"><span class="pre">gptme.toml</span></code> keep loading as usual.</p></li>
+</ul>
+<p>To work with another agent’s rules deliberately, read its <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>
+explicitly, or start a session in that workspace.</p>
+</section>
+</section>
+<section id="chat-config">
+<span id="id4"></span><h2>Chat config<a class="headerlink" href="#chat-config" title="Link to this heading">#</a></h2>
+<p>The chat configuration file stores configuration options for a particular chat.
+It is used to store the model, toolset, tool format, and streaming/interactive mode.</p>
+<p>The chat configuration file is stored as <code class="docutils literal notranslate"><span class="pre">config.toml</span></code> in the chat log directory (i.e. <code class="docutils literal notranslate"><span class="pre">~/.local/share/gptme/logs/2025-04-23-dancing-happy-walrus/config.toml</span></code>). It is automatically generated when a new chat is started and loaded when the chat is resumed, applying any overloaded options passed through the CLI.</p>
+<p>See <a class="reference internal" href="api/config.html#gptme.config.ChatConfig" title="gptme.config.ChatConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">gptme.config.ChatConfig</span></code></a> for the API reference.</p>
+</section>
+<section id="environment-variables">
+<span id="id5"></span><h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">#</a></h2>
+<p>Besides the configuration files, gptme supports several environment variables to control its behavior:</p>
+<p class="rubric">Feature Flags</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_CHECK</span></code> - Enable <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> checks (default: true if <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> present, see <a class="reference internal" href="usage.html#pre-commit"><span class="std std-ref">Pre-commit Integration</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_CHAT_HISTORY</span></code> - Enable cross-conversation context (default: false)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_COSTS</span></code> - Enable cost reporting for API calls (default: false)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_SESSION_BUDGET_USD</span></code> - Optional per-session cost budget in USD. When set, gptme warns once the current session crosses <code class="docutils literal notranslate"><span class="pre">GPTME_BUDGET_WARN_PCT</span></code> of the budget.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_SESSION_BUDGET_TOKENS</span></code> - Optional per-session token budget. Counts input, output, cache-read, and cache-creation tokens.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_BUDGET_WARN_PCT</span></code> - Percentage of the configured session budget that triggers the warning (default: 80).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_FRESH</span></code> - Enable fresh context mode (default: false)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_BREAK_ON_TOOLUSE</span></code> - Interrupt generation when tool use occurs in stream. Default is model-dependent: <code class="docutils literal notranslate"><span class="pre">false</span></code> for capable models that support parallel tool calls (e.g. claude-sonnet-4-6, gpt-4o), <code class="docutils literal notranslate"><span class="pre">true</span></code> for others. Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> to force parallel tool calls, <code class="docutils literal notranslate"><span class="pre">1</span></code> to force single tool call per response.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_PATCH_RECOVERY</span></code> - Return file content in error for non-matching patches (default: false)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_SUGGEST_LLM</span></code> - Enable LLM-powered prompt completion (default: false)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_TUI_DISPLAY_THINKING</span></code> - Show model thinking in the <a class="reference internal" href="tui.html"><span class="doc">TUI</span></a> at startup (default: false; toggle at runtime with <code class="docutils literal notranslate"><span class="pre">/display</span> <span class="pre">thinking</span></code>). Display only; does not affect reasoning.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_TUI_DISPLAY_HIDDEN</span></code> - Show hidden messages (sent to the model but normally not displayed, e.g. token/time notices) in the <a class="reference internal" href="tui.html"><span class="doc">TUI</span></a> at startup (default: false; toggle at runtime with <code class="docutils literal notranslate"><span class="pre">/display</span> <span class="pre">hidden</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_TUI_DISPLAY_HIGHLIGHT</span></code> - Syntax-highlight commands in tool-call titles and output summaries in the <a class="reference internal" href="tui.html"><span class="doc">TUI</span></a> (default: true; toggle at runtime with <code class="docutils literal notranslate"><span class="pre">/display</span> <span class="pre">highlight</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_TUI_DISPLAY_GROUPING</span></code> - Show each agent turn as one block in the <a class="reference internal" href="tui.html"><span class="doc">TUI</span></a>, with each tool’s output indented under the call that ran it (default: true; toggle at runtime with <code class="docutils literal notranslate"><span class="pre">/display</span> <span class="pre">grouping</span></code>)</p></li>
+</ul>
+<p class="rubric">API Configuration</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LLM_API_TIMEOUT</span></code> - Set the timeout in seconds for LLM API requests (default: 600). Must be a valid numeric string (e.g., “600”, “1800”). Useful for local LLMs that may take longer to respond.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_LLM_MAX_RETRIES</span></code> - Number of attempts (including the first) for a failing LLM request (default: 11). Retries use exponential backoff capped at 60s per wait, giving a ~5 minute window so a brief upstream rate-limit or outage does not end a long session. Provider SDK-level retries are disabled so this is the only retry loop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_THINKING_EFFORT</span></code> - Named reasoning effort level for reasoning models (default: unset, the provider default applies). Case-insensitive. Accepted levels depend on the provider that serves the request: Anthropic <code class="docutils literal notranslate"><span class="pre">low</span></code>, <code class="docutils literal notranslate"><span class="pre">medium</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>, <code class="docutils literal notranslate"><span class="pre">xhigh</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>; OpenAI <code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">minimal</span></code>, <code class="docutils literal notranslate"><span class="pre">low</span></code>, <code class="docutils literal notranslate"><span class="pre">medium</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>, <code class="docutils literal notranslate"><span class="pre">xhigh</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>; OpenRouter <code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">minimal</span></code>, <code class="docutils literal notranslate"><span class="pre">low</span></code>, <code class="docutils literal notranslate"><span class="pre">medium</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>, <code class="docutils literal notranslate"><span class="pre">xhigh</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>; Moonshot Kimi K3 <code class="docutils literal notranslate"><span class="pre">low</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>. Non-reasoning models and other providers ignore it; a level the active provider does not accept raises an error before the request is sent. The applied level is recorded on each assistant message as <code class="docutils literal notranslate"><span class="pre">metadata.reasoning_effort</span></code>. See <a class="reference internal" href="providers.html#reasoning-effort"><span class="std std-ref">Reasoning effort</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_REASONING_BUDGET</span></code> - Anthropic extended-thinking budget in tokens (default: 16000). Ignored when <code class="docutils literal notranslate"><span class="pre">GPTME_THINKING_EFFORT</span></code> is set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_REASONING</span></code> - Force Anthropic extended thinking on (<code class="docutils literal notranslate"><span class="pre">1</span></code>) or off (<code class="docutils literal notranslate"><span class="pre">0</span></code>) regardless of the model default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_ANTHROPIC_FAST_MODE</span></code> - Enable Anthropic fast mode for the Anthropic provider (default: false). When enabled, requests set <code class="docutils literal notranslate"><span class="pre">speed:</span> <span class="pre">&quot;fast&quot;</span></code> for up to ~2.5x higher output tokens/sec at premium pricing — a research preview available on Claude Opus 4.8+. Requires an org with fast-mode access; otherwise the API returns an error. Off by default, so it never affects standard usage. Useful for latency-sensitive callers (e.g. gptme-voice).</p></li>
+</ul>
+<p class="rubric">Browser Configuration</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_BROWSER_CDP_URL</span></code> - Connect the Playwright browser backend to an existing Chromium-compatible browser over Chrome DevTools Protocol instead of launching Playwright’s bundled Chromium. Example: <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:9222</span></code>. Start Chrome/Chromium with <code class="docutils literal notranslate"><span class="pre">--remote-debugging-port=9222</span></code> to enable this.</p></li>
+</ul>
+<p class="rubric">Paths</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_LOGS_HOME</span></code> - Override the default logs folder location</p></li>
+</ul>
+<p>All boolean flags accept “1”, “true” (case-insensitive) as truthy values.</p>
+<p class="rubric">CLI Options via Environment Variables</p>
+<p>All CLI options can also be set via environment variables with the <code class="docutils literal notranslate"><span class="pre">GPTME_</span></code> prefix.
+The variable name is derived from the parameter name in uppercase.</p>
+<p>Common examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_MODEL</span></code> - Set the model (equivalent to <code class="docutils literal notranslate"><span class="pre">--model</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_TOOL_FORMAT</span></code> - Set the tool format (equivalent to <code class="docutils literal notranslate"><span class="pre">--tool-format</span></code>), see <a class="reference internal" href="tool-formats.html"><span class="doc">Tool Formats</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_WORKSPACE</span></code> - Set the workspace (equivalent to <code class="docutils literal notranslate"><span class="pre">--workspace</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPTME_TOOL_ALLOWLIST</span></code> - Set allowed tools (equivalent to <code class="docutils literal notranslate"><span class="pre">--tools</span></code>)</p></li>
+</ul>
+<p>CLI arguments take precedence over environment variables, which take precedence over config file values.</p>
+<section id="cross-conversation-context">
+<h3>Cross-Conversation Context<a class="headerlink" href="#cross-conversation-context" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">GPTME_CHAT_HISTORY=true</span></code> is set, gptme will automatically include summaries from recent conversations in new chat sessions, providing continuity across conversations.</p>
+<p><strong>What it includes:</strong></p>
+<ul class="simple">
+<li><p>Summaries of the 3 most recent substantial conversations (4+ messages)</p></li>
+<li><p>Initial user requests and follow-ups from each conversation</p></li>
+<li><p>Last meaningful assistant response from each conversation</p></li>
+<li><p>Filters out test conversations and very short interactions</p></li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Better continuity for ongoing projects and work</p></li>
+<li><p>Understanding of user preferences and communication style</p></li>
+<li><p>Context for follow-up questions without manual references</p></li>
+<li><p>Awareness of previous technical discussions and solutions</p></li>
+</ul>
+<p>The context is automatically included as a system message when starting new conversations, enabling much better continuity without needing to manually reference previous conversations or maintain persistent notes.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="howto/tts-setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Set Up Text-to-Speech</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-config">Global config</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tui-status-line">TUI status line</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-model-selection-works">How model selection works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-overrides-config-local-toml">Local overrides (<code class="docutils literal notranslate"><span class="pre">config.local.toml</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-defaults-and-prompt-fragments">Runtime defaults and prompt fragments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-config">Project config</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-overrides-gptme-local-toml">Local overrides (<code class="docutils literal notranslate"><span class="pre">gptme.local.toml</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-instruction-files-agents-md">Agent instruction files (<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chat-config">Chat config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-variables">Environment Variables</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-conversation-context">Cross-Conversation Context</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Erik Bjäreholt
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Erik Bjäreholt.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
